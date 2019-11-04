@@ -6,12 +6,20 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    let now  = new Date();
-    let formattedString = this.formatTime(now);
+    const support24Hour = this.props.support24Hour;
+    let formattedString = '12-Hour Time';
+    if (support24Hour) {
+      formattedString = '24-Hour Time';
+    }
 
     this.state = {
-      formattedTime: formattedString
+      formattedTime: formattedString,
+      isToggleOn: true
     };
+
+    if (support24Hour) {
+      this.handleClick = this.handleClick.bind(this);
+    }    
   }
 
   componentDidMount() {
@@ -31,28 +39,49 @@ class App extends Component {
     let now  = new Date();
     let formattedString = this.formatTime(now);
 
-    this.setState({
+    this.setState(state => ({
       formattedTime: formattedString
-    });
+    }));
   }
 
   formatTime(time) {
-    const is24HourTime = this.props.time_24Hour;
+    const support24Hour = this.props.support24Hour;
     let formattedString = '';
-    if (is24HourTime) {
-      formattedString = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds();
+    if (support24Hour) {
+      if(this.state.isToggleOn) {
+        formattedString = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds();
+      } else {
+        formattedString = time.toLocaleTimeString();
+      }
     } else {
       formattedString = time.toLocaleTimeString();
     }
     return formattedString;
   }
 
+  handleClick() {
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn
+    }));
+  }
+
   render() {
+    const support24Hour = this.props.support24Hour;
+
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>It is {this.state.formattedTime}.</h2>
+          <div>
+          {support24Hour ? (
+            <button onClick={this.handleClick}>
+              {this.state.formattedTime}
+            </button>
+          ) : (
+            <h2>{this.state.formattedTime}</h2>
+          )
+          }
+          </div>
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.

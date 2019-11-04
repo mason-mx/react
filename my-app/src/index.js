@@ -4,6 +4,6 @@ import App from './App';
 import './index.css';
 
 ReactDOM.render(
-  <App time_24Hour={false} />,
+  <App support24Hour={true} />,
   document.getElementById('root')
 );
