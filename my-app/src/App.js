@@ -40,7 +40,7 @@ class App extends Component {
     const support24Hour = this.state.support24Hour;
     let formattedString = '';
     if (support24Hour) {
-      formattedString = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds();
+      formattedString = time.getHours() + ':' + ("0" + time.getMinutes()).substr(-2) + ':' + ("0" + time.getSeconds()).substr(-2);
     } else {
       formattedString = time.toLocaleTimeString();
     }
