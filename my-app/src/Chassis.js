@@ -32,7 +32,7 @@ class SearchBar extends Component {
             onChange={this.handleshowHiddenChange}
           />
           {' '}
-          Show hidden blade
+          Show empty slot
         </p>
       </form>
     );
@@ -44,11 +44,38 @@ class Chassis extends Component {
     super(props);
     this.state = {
       filterText: '',
-      showHidden: false
+      showEmptySlot: false,
+      error: null,
+      isLoaded: false,
+      chassisMode: "SINGLE",
+      blades: []
     };
     
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     this.handleshowHiddenChange = this.handleshowHiddenChange.bind(this);
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:2222")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            blades: result.chassis[0].blades,
+            chassisMode: result.chassis_mode
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
   }
 
   handleFilterTextChange(filterText) {
@@ -57,28 +84,35 @@ class Chassis extends Component {
     });
   }
   
-  handleshowHiddenChange(showHidden) {
+  handleshowHiddenChange(showEmptySlot) {
     this.setState({
-      showHidden: showHidden
+      showEmptySlot: showEmptySlot
     })
   }
 
   render() {
-    return (
-      <div>
-        <SearchBar
-          filterText={this.state.filterText}
-          showHidden={this.state.showHidden}
-          onFilterTextChange={this.handleFilterTextChange}
-          onshowHiddenChange={this.handleshowHiddenChange}
-        />
-        <BladeTable
-          blades={this.props.blades}
-          filterText={this.state.filterText}
-          showHidden={this.state.showHidden}
-        />
-      </div>
-    );
+    const { error, isLoaded, blades } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+        <div>
+          <SearchBar
+            filterText={this.state.filterText}
+            showEmptySlot={this.state.showEmptySlot}
+            onFilterTextChange={this.handleFilterTextChange}
+            onshowHiddenChange={this.handleshowHiddenChange}
+          />
+          <BladeTable
+            blades={blades}
+            filterText={this.state.filterText}
+            showEmptySlot={this.state.showEmptySlot}
+          />
+        </div>
+      );
+    }
   }
 }
 

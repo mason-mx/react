@@ -5,12 +5,12 @@ import Chassis from './Chassis';
 import './index.css';
 
 const BLADES = [
-  {category: 'Laser', moduleNum: '195888', present: true, name: 'Laser-11'},
-  {category: 'Laser', moduleNum: '195888', present: true, name: 'Laser-12'},
-  {category: 'Laser', moduleNum: '195888', present: false, name: 'Laser-13'},
-  {category: 'Switch', moduleNum: '195888', present: true, name: 'Switch-11'},
-  {category: 'Switch', moduleNum: '195888', present: false, name: 'Switch-12'},
-  {category: 'Switch', moduleNum: '195888', present: true, name: 'Switch-13'}
+  {category: 'Laser', model: '195888', present: true, serial: 'Laser-11'},
+  {category: 'Laser', model: '195888', present: true, serial: 'Laser-12'},
+  {category: 'Laser', model: '195888', present: false, serial: 'Laser-13'},
+  {category: 'Switch', model: '195888', present: true, serial: 'Switch-11'},
+  {category: 'Switch', model: '195888', present: false, serial: 'Switch-12'},
+  {category: 'Switch', model: '195888', present: true, serial: 'Switch-13'}
 ];
 
 ReactDOM.render(

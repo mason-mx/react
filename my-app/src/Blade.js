@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+/*
 class BladeCategoryRow extends Component {
   render() {
     const category = this.props.category;
@@ -11,21 +12,21 @@ class BladeCategoryRow extends Component {
       </tr>
     );
   }
-}
+}*/
 
 class BladeRow extends Component {
   render() {
     const blade = this.props.blade;
-    const name = blade.present ?
-      blade.name :
-      <span style={{color: 'red'}}>
-        {blade.name}
-      </span>;
+    const model = (blade !== "None") ?
+      blade.model :
+      <span style={{color: 'red'}}> Empth Slot </span>;
+    const serial = (blade !== "None") ?
+      blade.serial : "";
 
     return (
       <tr>
-        <td>{name}</td>
-        <td>{blade.modelNum}</td>
+        <td>{model}</td>
+        <td>{serial}</td>
       </tr>
     );
   }
@@ -34,32 +35,37 @@ class BladeRow extends Component {
 class BladeTable extends Component {
   render() {
     const filterText = this.props.filterText;
-    const showHidden = this.props.showHidden;
+    const showEmptySlot = this.props.showEmptySlot;
 
     const rows = [];
-    let lastCategory = null;
+    //let lastCategory = null;
+    let slotId = 0;
 
     this.props.blades.forEach((blade) => {
-      if (blade.name.indexOf(filterText) === -1) {
-        return;
+      if (blade !== "None") {
+        if (blade.model.indexOf(filterText) === -1) {
+          return;
+        }
+        //if (blade.company !== lastCategory) {
+        //  rows.push(
+        //    <BladeCategoryRow
+        //      category={blade.company}
+        //      key={blade.company}
+        //    />
+        //  );
+        //}
       }
-      if (!showHidden && !blade.present) {
+      if (!showEmptySlot && blade === "None") {
         return;
-      }
-      if (blade.category !== lastCategory) {
-        rows.push(
-          <BladeCategoryRow
-            category={blade.category}
-            key={blade.category} />
-        );
       }
       rows.push(
         <BladeRow
           blade={blade}
-          key={blade.name}
+          key={slotId}
         />
       );
-      lastCategory = blade.category;
+      //lastCategory = blade.company;
+      slotId ++;
     });
 
     return (
