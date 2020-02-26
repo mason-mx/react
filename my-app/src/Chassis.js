@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BladeTable from './Blade';
+import {getData, postData} from './Fetch'
 
 class SearchBar extends Component {
   constructor(props) {
@@ -53,29 +54,27 @@ class Chassis extends Component {
     
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     this.handleshowHiddenChange = this.handleshowHiddenChange.bind(this);
+    this.onFetchSuccess = this.onFetchSuccess.bind(this);
+    this.onFetchFailure = this.onFetchFailure.bind(this);
   }
 
   componentDidMount() {
-    fetch("http://localhost:2222")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            blades: result.chassis[0].blades,
-            chassisMode: result.chassis_mode
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    getData("http://localhost:2222", this.onFetchSuccess, this.onFetchFailure);
+  }
+
+  onFetchSuccess(result) {
+    this.setState({
+      isLoaded: true,
+      blades: result.chassis[0].blades,
+      chassisMode: result.chassis_mode
+    });
+  }
+
+  onFetchFailure(error) {
+    this.setState({
+      isLoaded: true,
+      error
+    });
   }
 
   handleFilterTextChange(filterText) {
@@ -88,6 +87,11 @@ class Chassis extends Component {
     this.setState({
       showEmptySlot: showEmptySlot
     })
+    postData('https://jsonplaceholder.typicode.com/posts', {
+      title: 'foo',
+      body: 'bar',
+      userId: 1
+    });
   }
 
   render() {
