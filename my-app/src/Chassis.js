@@ -59,7 +59,7 @@ class Chassis extends Component {
   }
 
   componentDidMount() {
-    getData("http://localhost:2222", this.onFetchSuccess, this.onFetchFailure);
+    getData("http://localhost/instrument", this.onFetchSuccess, this.onFetchFailure);
   }
 
   onFetchSuccess(result) {
@@ -87,11 +87,11 @@ class Chassis extends Component {
     this.setState({
       showEmptySlot: showEmptySlot
     })
-    postData('https://jsonplaceholder.typicode.com/posts', {
-      title: 'foo',
-      body: 'bar',
-      userId: 1
-    });
+    // postData('https://jsonplaceholder.typicode.com/posts', {
+    //   title: 'foo',
+    //   body: 'bar',
+    //   userId: 1
+    // });
   }
 
   render() {

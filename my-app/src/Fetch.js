@@ -10,6 +10,18 @@ export function postData(url, data){
   .then(json => console.log(json)); 
 }
 
+export function putData(url, data){
+  fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  .then(res => res.json())
+  .then(json => console.log(json)); 
+}
+
 export function getData(url, callBackFunc1, callBackFunc2){
   fetch(url)
   .then(res => res.json())

@@ -13,10 +13,10 @@ like_button.js
 
 ```
 npm init -y
-nnpm install babel-cli@6 babel-preset-react-app@3
+npm install babel-cli@6 babel-preset-react-app@3
 mkdir src
 npx babel --watch src --out-dir . --presets react-app/prod
-vim src/like_button.js
+vim src/react_sandbox.js
 ```
 
 ## Create a New React App [Link](https://reactjs.org/docs/create-a-new-react-app.html)
