@@ -26,5 +26,15 @@ vim src/react_sandbox.js
 ```
 npx create-react-app my-app
 cd my-app
+npm install
 npm start
+
+npm run build
+serve -s build
 ```
+
+### Learn More
+
+Create React App [Link](https://create-react-app.dev/docs/getting-started/)
+React Dev [Link](https://react.dev/learn)
+One of React.js Framework: Next.js [Link](https://nextjs.org/learn/foundations/about-nextjs)
