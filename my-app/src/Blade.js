@@ -18,7 +18,7 @@ class BladeRow extends Component {
   render() {
     const blade = this.props.blade;
     const model = (blade !== "None") ?
-      blade.model :
+      <a href="/posts">{blade.model}</a> :
       <span style={{color: 'red'}}> Empth Slot </span>;
     const serial = (blade !== "None") ?
       blade.serial : "";

@@ -81,7 +81,7 @@ class Chassis extends Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div>
+        <div class="col">
           <SearchBar
             filterText={this.state.filterText}
             showEmptySlot={this.state.showEmptySlot}
