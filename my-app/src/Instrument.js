@@ -10,6 +10,8 @@ class Instrument extends Component {
       isLoaded: false,
       chassis: []
     };
+
+    this.clickBlade = this.clickBlade.bind(this);
     
     this.onFetchSuccess = this.onFetchSuccess.bind(this);
     this.onFetchFailure = this.onFetchFailure.bind(this);
@@ -33,6 +35,12 @@ class Instrument extends Component {
     });
   }
 
+  clickBlade() {
+    this.setState({
+      isLoaded: false
+    })
+  }
+
   render() {
     const { error, isLoaded, chassis } = this.state;
     if (error) {
@@ -46,6 +54,8 @@ class Instrument extends Component {
           <Chassis
             blades={chassis[i].blades}
             isLoaded={true}
+            key={i}
+            onClickBlade={this.clickBlade}
           />);
       }
       return mutliChassis;

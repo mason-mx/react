@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import BladeTable from './Blade';
-import {getData} from './Fetch'
 
 class SearchBar extends Component {
   constructor(props) {
@@ -46,10 +45,9 @@ class Chassis extends Component {
     this.state = {
       filterText: '',
       showEmptySlot: false,
-      error: null,
-      isLoaded: props.isLoaded,
       chassisMode: "SINGLE",
-      blades: props.blades
+      blades: props.blades,
+      onClickBlade: null
     };
     
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
@@ -74,28 +72,23 @@ class Chassis extends Component {
   }
 
   render() {
-    const { error, isLoaded, blades } = this.state;
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
-      return (
-        <div class="col">
-          <SearchBar
-            filterText={this.state.filterText}
-            showEmptySlot={this.state.showEmptySlot}
-            onFilterTextChange={this.handleFilterTextChange}
-            onshowHiddenChange={this.handleshowHiddenChange}
-          />
-          <BladeTable
-            blades={blades}
-            filterText={this.state.filterText}
-            showEmptySlot={this.state.showEmptySlot}
-          />
-        </div>
-      );
-    }
+    const { blades } = this.state;
+    return (
+      <div className="col">
+        <SearchBar
+          filterText={this.state.filterText}
+          showEmptySlot={this.state.showEmptySlot}
+          onFilterTextChange={this.handleFilterTextChange}
+          onshowHiddenChange={this.handleshowHiddenChange}
+        />
+        <BladeTable
+          blades={blades}
+          filterText={this.state.filterText}
+          showEmptySlot={this.state.showEmptySlot}
+          onBladeItem={this.props.onClickBlade}
+        />
+      </div>
+    );
   }
 }
 

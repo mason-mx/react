@@ -15,10 +15,26 @@ class BladeCategoryRow extends Component {
 }*/
 
 class BladeRow extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      onClickBlade: null
+    };
+    this.onClickBlade = this.onClickBlade.bind(this);
+  }
+
+  onClickBlade() {
+    if(typeof(this.props.onClickBlade) === 'function') {
+        this.props.onClickBlade();
+    }else{
+        console.log("null function for form submit");
+    }
+  }
+
   render() {
     const blade = this.props.blade;
     const model = (blade !== "None") ?
-      <a href="/posts">{blade.model}</a> :
+      <a href="#" onClick={this.onClickBlade}>{blade.model}</a> :
       <span style={{color: 'red'}}> Empth Slot </span>;
     const serial = (blade !== "None") ?
       blade.serial : "";
@@ -33,6 +49,13 @@ class BladeRow extends Component {
 }
 
 class BladeTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      onBladeItem: null
+    };
+  }
+
   render() {
     const filterText = this.props.filterText;
     const showEmptySlot = this.props.showEmptySlot;
@@ -62,6 +85,7 @@ class BladeTable extends Component {
         <BladeRow
           blade={blade}
           key={slotId}
+          onClickBlade={this.props.onBladeItem}
         />
       );
       //lastCategory = blade.company;
