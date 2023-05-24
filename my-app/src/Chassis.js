@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BladeTable from './Blade';
-import {getData, postData} from './Fetch'
+import {getData} from './Fetch'
 
 class SearchBar extends Component {
   constructor(props) {
@@ -47,34 +47,13 @@ class Chassis extends Component {
       filterText: '',
       showEmptySlot: false,
       error: null,
-      isLoaded: false,
+      isLoaded: props.isLoaded,
       chassisMode: "SINGLE",
-      blades: []
+      blades: props.blades
     };
     
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     this.handleshowHiddenChange = this.handleshowHiddenChange.bind(this);
-    this.onFetchSuccess = this.onFetchSuccess.bind(this);
-    this.onFetchFailure = this.onFetchFailure.bind(this);
-  }
-
-  componentDidMount() {
-    getData("http://localhost/instrument", this.onFetchSuccess, this.onFetchFailure);
-  }
-
-  onFetchSuccess(result) {
-    this.setState({
-      isLoaded: true,
-      blades: result.chassis[0].blades,
-      chassisMode: result.chassis_mode
-    });
-  }
-
-  onFetchFailure(error) {
-    this.setState({
-      isLoaded: true,
-      error
-    });
   }
 
   handleFilterTextChange(filterText) {

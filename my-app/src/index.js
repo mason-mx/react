@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Chassis from './Chassis';
+import Instrument from './Instrument';
 import './index.css';
 
 ReactDOM.render(
@@ -10,6 +10,6 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
-  <Chassis />,
+  <Instrument />,
   document.getElementById('instrument')
 );

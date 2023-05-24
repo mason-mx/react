@@ -36,5 +36,7 @@ serve -s build
 ### Learn More
 
 Create React App [Link](https://create-react-app.dev/docs/getting-started/)
+
 React Dev [Link](https://react.dev/learn)
+
 One of React.js Framework: Next.js [Link](https://nextjs.org/learn/foundations/about-nextjs)
