@@ -5,6 +5,7 @@
 ### Add React in One Minute
 
 ```
+cd test-water
 index.html
 like_button.js
 ```
@@ -26,11 +27,21 @@ vim src/react_sandbox.js
 ```
 npx create-react-app my-app
 cd my-app
-npm install
+npm install (if node_modules does not exist)
 npm start
 
 npm run build
 serve -s build
+```
+
+### Create a new multi-page app
+
+```
+npx create-react-app multi-page
+cd multi-page
+npm install (if node_modules does not exist)
+npm install react-router-dom
+npm i -D styled-components@5.3.10
 ```
 
 ### Learn More
