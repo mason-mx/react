@@ -22,3 +22,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 ```
+
+Use Sass in your React.js project
+
+```
+npm install sass
+```
