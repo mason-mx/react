@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import CNavbar from './navbar';
+import CFooter from './footer';
 import reportWebVitals from './reportWebVitals';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,6 +19,13 @@ const navbar = ReactDOM.createRoot(document.getElementById('navbar'));
 navbar.render(
   <React.StrictMode>
     <CNavbar />
+  </React.StrictMode>
+);
+
+const footer = ReactDOM.createRoot(document.getElementById('footer'));
+footer.render(
+  <React.StrictMode>
+    <CFooter />
   </React.StrictMode>
 );
 

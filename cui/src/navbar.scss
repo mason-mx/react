@@ -1,3 +1,10 @@
 .c-navbar {
     background: linear-gradient(to right, #72246c, #d0006f);
 }
+
+.sticky {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    width: 100%
+}

@@ -6,14 +6,14 @@ import "./navbar.scss";
 
 function CNavbar() {
   return (
-    <Navbar className="c-navbar" expand="lg" variant="dark">
+    <Navbar className="c-navbar" expand="lg" variant="dark" fixed="top">
       <Container>
         <Navbar.Brand href="#">
             <img
               alt=""
               src="logo.svg"
-              width="150"
-              height="43"
+              width="99"
+              height="auto"
               className="d-inline-block align-top"
             />
           </Navbar.Brand>
