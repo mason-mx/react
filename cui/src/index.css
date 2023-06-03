@@ -15,3 +15,8 @@ code {
 .container {
   max-width: unset !important;
 }
+
+.main-frame {
+  top: 56px;
+  position: relative;
+}

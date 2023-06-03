@@ -4,14 +4,15 @@ import './index.css';
 import App from './App';
 import CNavbar from './navbar';
 import CFooter from './footer';
+import Instrument from './Instrument';
 import reportWebVitals from './reportWebVitals';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+const instr = ReactDOM.createRoot(document.getElementById('root'));
+instr.render(
   <React.StrictMode>
-    <App />
+    <Instrument />
   </React.StrictMode>
 );
 
