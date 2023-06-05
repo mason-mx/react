@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Chassis from './Chassis';
-import {getData} from './Fetch'
+import PxiePage from './pxie';
+import Bladepage from './bladepage';
+import {getData} from './fetch'
+import SwitchComponent from './switchcomponent';
 
 class Instrument extends Component {
   constructor(props) {
@@ -8,7 +10,7 @@ class Instrument extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      chassis: []
+      platform: 'PXIE'
     };
 
     this.clickBlade = this.clickBlade.bind(this);
@@ -24,6 +26,7 @@ class Instrument extends Component {
   onFetchSuccess(result) {
     this.setState({
       isLoaded: true,
+      platform: result.platform,
       chassis: result.chassis
     });
   }
@@ -42,23 +45,18 @@ class Instrument extends Component {
   }
 
   render() {
-    const { error, isLoaded, chassis } = this.state;
+    const { error, isLoaded, platform, chassis } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
-      var mutliChassis = [];
-      for (var i = 0; i < chassis.length; i++) {
-        mutliChassis.push(
-          <Chassis
-            blades={chassis[i].blades}
-            isLoaded={true}
-            key={i}
-            onClickBlade={this.clickBlade}
-          />);
-      }
-      return <div className='row'>{mutliChassis}</div>;
+      return (
+        <SwitchComponent active={platform}>
+          <PxiePage chassis={chassis} name='PXIE'/>
+          <Bladepage name='MTRQ'/>
+        </SwitchComponent>
+      )
     }
   }
 }

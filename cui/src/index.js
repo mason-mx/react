@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import CNavbar from './navbar';
 import CFooter from './footer';
-import Instrument from './Instrument';
+import Instrument from './instrument';
 import reportWebVitals from './reportWebVitals';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
