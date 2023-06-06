@@ -10,7 +10,7 @@ function CNavbar() {
   return (
     <Navbar className="c-navbar" expand="lg" variant="dark" fixed="top">
       <Container>
-        <Navbar.Brand href="#">
+        <Navbar.Brand href="https://github.com/mason-mx">
             <img
               alt=""
               src="logo.svg"
@@ -35,7 +35,7 @@ function CNavbar() {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link eventKey={2} href="https://github.com/mason-mx" target="_blank">Company Web Site</Nav.Link>
+            <Nav.Link eventKey={2} href="#" target="_blank">Info</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

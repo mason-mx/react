@@ -27,7 +27,7 @@ class BladeRow extends Component {
   static contextType = ViewContext;
 
   onClickBlade() {
-    this.context.view = 'device';
+    this.context.view = 'blade';
     this.context.onChange();
   }
 

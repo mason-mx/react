@@ -42,7 +42,7 @@ class Instrument extends Component {
 
   clickBlade() {
     this.setState({
-      view: 'device'
+      view: 'blade'
     })
   }
 
@@ -66,8 +66,8 @@ class Instrument extends Component {
               <PxiePage chassis={chassis}/>
             </ViewContext.Provider>
           )
-        } else if (view === 'device') {
-          return <div>Blade view...</div>;
+        } else if (view === 'blade') {
+          return <Bladepage />;
         } else {
           return <h1>Current view is : {view}</h1>        
         }
