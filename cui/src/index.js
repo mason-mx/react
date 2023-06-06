@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const instr = ReactDOM.createRoot(document.getElementById('root'));
 instr.render(
   <React.StrictMode>
-    <Instrument />
+    <Instrument ref={(instrComponent) => {window.instrComponent = instrComponent}}/>
   </React.StrictMode>
 );
 

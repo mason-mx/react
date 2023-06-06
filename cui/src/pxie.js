@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-//import ReactDOM from 'react-dom/client';
-//import bladepage from './bladepage';
+import { ViewContext } from './viewcontext';
 
 /*
 class BladeCategoryRow extends Component {
@@ -25,18 +24,11 @@ class BladeRow extends Component {
     this.onClickBlade = this.onClickBlade.bind(this);
   }
 
+  static contextType = ViewContext;
+
   onClickBlade() {
-    if(typeof(this.props.onClickBlade) === 'function') {
-        this.props.onClickBlade();
-    }else{
-        console.log("null function for form submit");
-    }
-    // const instr = ReactDOM.createRoot(document.getElementById('root'));
-    // instr.render(
-    //   <React.StrictMode>
-    //     <bladepage />
-    //   </React.StrictMode>
-    // );
+    this.context.view = 'device';
+    this.context.onChange();
   }
 
   render() {
@@ -57,13 +49,6 @@ class BladeRow extends Component {
 }
 
 class BladeTable extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      onBladeItem: null
-    };
-  }
-
   render() {
     const filterText = this.props.filterText;
     const showEmptySlot = this.props.showEmptySlot;
@@ -93,7 +78,6 @@ class BladeTable extends Component {
         <BladeRow
           blade={blade}
           key={slotId}
-          onClickBlade={this.props.onBladeItem}
         />
       );
       //lastCategory = blade.company;
@@ -158,9 +142,7 @@ class Chassis extends Component {
     this.state = {
       filterText: '',
       showEmptySlot: false,
-      chassisMode: "SINGLE",
-      blades: props.blades,
-      onClickBlade: null
+      blades: props.blades
     };
     
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
@@ -198,7 +180,6 @@ class Chassis extends Component {
           blades={blades}
           filterText={this.state.filterText}
           showEmptySlot={this.state.showEmptySlot}
-          onBladeItem={this.props.onClickBlade}
         />
       </div>
     );
@@ -206,10 +187,6 @@ class Chassis extends Component {
 }
 
 class PxiePage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     var mutliChassis = [];
     for (var i = 0; i < this.props.chassis.length; i++) {
@@ -217,7 +194,6 @@ class PxiePage extends Component {
         <Chassis
           blades={this.props.chassis[i].blades}
           key={i}
-          onClickBlade={this.clickBlade}
         />);
     }
     return <div className='row'>{mutliChassis}</div>;
