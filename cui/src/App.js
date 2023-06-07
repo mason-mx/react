@@ -5,13 +5,13 @@ import CFooter from './footer';
 import Instrument from './instrument';
 
 function App() {
-  const a_comp = useRef(null);
+  const instr_comp = useRef(null);
   return (
     <>
-      <CNavbar callB={() => {
-          a_comp.current.f();
+      <CNavbar callHome={() => {
+          instr_comp.current.clickHome();
         }}/>
-      <Instrument ref={a_comp}/>
+      <Instrument ref={instr_comp}/>
       <CFooter />
     </>
   );

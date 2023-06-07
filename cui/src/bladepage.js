@@ -9,7 +9,7 @@ function Bladepage(props) {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch("http://localhost/instrument/chassis1/blade" + props.slot)
+    fetch("http://localhost/instrument/chassis" + props.chassis + "/blade" + props.slot)
       .then(res => res.json())
       .then(
         (result) => {
@@ -21,7 +21,7 @@ function Bladepage(props) {
           setError(error);
         }
       )
-  }, [])
+  })
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -29,10 +29,10 @@ function Bladepage(props) {
     return <div>Loading...</div>;
   } else {
     return (
-      <main role="main" className="container main-frame my-2" id="mainFrame">
-        <h1>{props.slot}: {bladeDate.model}</h1>
+      <>
+        <h1>{props.chassis}|{props.slot}: {bladeDate.model}</h1>
         {JSON.stringify(bladeDate)}
-      </main>
+      </>
     );
   }
 }

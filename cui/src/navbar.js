@@ -23,7 +23,7 @@ function CNavbar(props) {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto" activeKey={active} onSelect={(selectedKey) => setActive(selectedKey)}>
-              <Nav.Link href="#" onClick={() => {props.callB();}} eventKey="default">Instrument View</Nav.Link>
+              <Nav.Link href="#" onClick={() => {props.callHome();}} eventKey="default">Instrument View</Nav.Link>
               <Nav.Link href="#" eventKey="sys_settings">System Settings</Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

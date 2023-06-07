@@ -26,17 +26,15 @@ class BladeRow extends Component {
 
   static contextType = ViewContext;
 
-  onClickBlade(slot, e) {
-    console.log(slot);
-
+  onClickBlade(chassis, slot, e) {
     this.context.view = 'blade';
-    this.context.onChange(slot);
+    this.context.onChange(chassis, slot);
   }
 
   render() {
     const blade = this.props.blade;
     const model = (blade !== "None") ?
-      <a href="#" onClick={(e) => this.onClickBlade(this.props.slot, e)}>{blade.model}</a> :
+      <a href="#" onClick={(e) => this.onClickBlade(this.props.chassis, this.props.slot, e)}>{blade.model}</a> :
       <span style={{color: 'red'}}> Empth Slot </span>;
     const serial = (blade !== "None") ?
       blade.serial : "";
@@ -81,6 +79,7 @@ class BladeTable extends Component {
         <BladeRow
           blade={blade}
           slot={slotId}
+          chassis={this.props.chassis}
           key={slotId}
         />
       );
@@ -144,8 +143,7 @@ class Chassis extends Component {
     super(props);
     this.state = {
       filterText: '',
-      showEmptySlot: false,
-      blades: props.blades
+      showEmptySlot: false
     };
     
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
@@ -170,7 +168,7 @@ class Chassis extends Component {
   }
 
   render() {
-    const { blades } = this.state;
+    //const { blades } = this.state;
     return (
       <div className="col">
         <SearchBar
@@ -180,7 +178,8 @@ class Chassis extends Component {
           onshowHiddenChange={this.handleshowHiddenChange}
         />
         <BladeTable
-          blades={blades}
+          blades={this.props.blades}
+          chassis={this.props.chassis}
           filterText={this.state.filterText}
           showEmptySlot={this.state.showEmptySlot}
         />
@@ -196,6 +195,7 @@ class PxiePage extends Component {
       mutliChassis.push(
         <Chassis
           blades={this.props.chassis[i].blades}
+          chassis={this.props.chassis[i].id}
           key={i}
         />);
     }
