@@ -1,22 +1,19 @@
 import './App.css';
+import React, { useRef } from "react";
+import CNavbar from './navbar';
+import CFooter from './footer';
+import Instrument from './instrument';
 
 function App() {
+  const a_comp = useRef(null);
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <CNavbar callB={() => {
+          a_comp.current.f();
+        }}/>
+      <Instrument ref={a_comp}/>
+      <CFooter />
+    </>
   );
 }
 

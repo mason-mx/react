@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
-function Bladepage() {
+function Bladepage(props) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+  const [bladeDate, setBladeDate] = useState({});
 
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch("http://localhost/instrument/chassis1/blade3")
+    fetch("http://localhost/instrument/chassis1/blade" + props.slot)
       .then(res => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
-          setItems(result);
+          setBladeDate(result);
         },
         (error) => {
           setIsLoaded(true);
@@ -29,9 +29,10 @@ function Bladepage() {
     return <div>Loading...</div>;
   } else {
     return (
-      <div>
-        {JSON.stringify(items)}
-      </div>
+      <main role="main" className="container main-frame my-2" id="mainFrame">
+        <h1>{props.slot}: {bladeDate.model}</h1>
+        {JSON.stringify(bladeDate)}
+      </main>
     );
   }
 }

@@ -26,15 +26,17 @@ class BladeRow extends Component {
 
   static contextType = ViewContext;
 
-  onClickBlade() {
+  onClickBlade(slot, e) {
+    console.log(slot);
+
     this.context.view = 'blade';
-    this.context.onChange();
+    this.context.onChange(slot);
   }
 
   render() {
     const blade = this.props.blade;
     const model = (blade !== "None") ?
-      <a href="#" onClick={this.onClickBlade}>{blade.model}</a> :
+      <a href="#" onClick={(e) => this.onClickBlade(this.props.slot, e)}>{blade.model}</a> :
       <span style={{color: 'red'}}> Empth Slot </span>;
     const serial = (blade !== "None") ?
       blade.serial : "";
@@ -55,9 +57,10 @@ class BladeTable extends Component {
 
     const rows = [];
     //let lastCategory = null;
-    let slotId = 0;
+    let slotId = -1;
 
     this.props.blades.forEach((blade) => {
+      slotId ++;
       if (blade !== "None") {
         if (blade.model.indexOf(filterText) === -1) {
           return;
@@ -77,11 +80,11 @@ class BladeTable extends Component {
       rows.push(
         <BladeRow
           blade={blade}
+          slot={slotId}
           key={slotId}
         />
       );
       //lastCategory = blade.company;
-      slotId ++;
     });
 
     return (
