@@ -17,7 +17,6 @@ const Instrument = forwardRef((props, ref) => {
 
 
   const clickBlade=(chassis, slot) => {
-    console.log(chassis, slot);
     setSlot(slot);
     setChassis(chassis);
     setView('blade');

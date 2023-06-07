@@ -33,14 +33,16 @@ class BladeRow extends Component {
 
   render() {
     const blade = this.props.blade;
+    const slot = this.props.slot;
     const model = (blade !== "None") ?
-      <a href="#" onClick={(e) => this.onClickBlade(this.props.chassis, this.props.slot, e)}>{blade.model}</a> :
+      <a href="#" onClick={(e) => this.onClickBlade(this.props.chassis, slot, e)}>{blade.model}</a> :
       <span style={{color: 'red'}}> Empth Slot </span>;
     const serial = (blade !== "None") ?
       blade.serial : "";
 
     return (
       <tr>
+        <td>{slot}</td>
         <td>{model}</td>
         <td>{serial}</td>
       </tr>
@@ -90,6 +92,7 @@ class BladeTable extends Component {
       <table>
         <thead>
           <tr>
+            <th>Slot</th>
             <th>Model Name</th>
             <th>Model Number</th>
           </tr>
@@ -124,7 +127,7 @@ class SearchBar extends Component {
           value={this.props.filterText}
           onChange={this.handleFilterTextChange}
         />
-        <p>
+        <div>
           <input
             type="checkbox"
             checked={this.props.showHidden}
@@ -132,7 +135,7 @@ class SearchBar extends Component {
           />
           {' '}
           Show empty slot
-        </p>
+        </div>
       </form>
     );
   }
