@@ -3,6 +3,7 @@ import PxiePage from './pxie';
 import Bladepage from './bladepage';
 import CMainFrame from './mainframe';
 import { ViewContext } from './viewcontext';
+import Spinner from 'react-bootstrap/Spinner';
 
 const { forwardRef, useImperativeHandle } = React;
 
@@ -48,9 +49,19 @@ const Instrument = forwardRef((props, ref) => {
   }, [])
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return (
+    <>
+      <CMainFrame><div>Error: {error.message}</div></CMainFrame>
+    </>);
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <CMainFrame>
+          <Spinner animation="grow" variant="danger"  size="sm" />
+          <Spinner animation="grow" variant="warning"  size="sm" />
+          <Spinner animation="grow" variant="info"  size="sm" />
+        </CMainFrame>
+      </>);
   } else {
     if (platform === 'PXIE') {
       if (view === 'home') {
