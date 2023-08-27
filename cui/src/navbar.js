@@ -36,7 +36,7 @@ function CNavbar(props) {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link eventKey={2} href="#" target="_blank">Info</Nav.Link>
+              <Nav.Link href="#" onClick={() => {props.callSidebar();}} eventKey="side_bar">Info</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

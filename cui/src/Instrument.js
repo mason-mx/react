@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PxiePage from './pxie';
 import Bladepage from './bladepage';
-import CMainFrame from './mainframe';
 import { ViewContext } from './viewcontext';
 import Spinner from 'react-bootstrap/Spinner';
 
@@ -49,43 +48,32 @@ const Instrument = forwardRef((props, ref) => {
   }, [])
 
   if (error) {
-    return (
-    <>
-      <CMainFrame><div>Error: {error.message}</div></CMainFrame>
-    </>);
+    return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
     return (
       <>
-        <CMainFrame>
-          <Spinner animation="grow" variant="danger"  size="sm" />
-          <Spinner animation="grow" variant="warning"  size="sm" />
-          <Spinner animation="grow" variant="info"  size="sm" />
-        </CMainFrame>
+        <Spinner animation="grow" variant="danger"  size="sm" />
+        <Spinner animation="grow" variant="warning"  size="sm" />
+        <Spinner animation="grow" variant="info"  size="sm" />
       </>);
   } else {
     if (platform === 'PXIE') {
       if (view === 'home') {
         return (
-          <CMainFrame>
-            <ViewContext.Provider value={{onChange: clickBlade}}>
-              <PxiePage chassis={chassisData}/>
-            </ViewContext.Provider>
-          </CMainFrame>
+          <ViewContext.Provider value={{onChange: clickBlade}}>
+            <PxiePage chassis={chassisData}/>
+          </ViewContext.Provider>
         )
       } else if (view === 'blade') {
         return (
-          <CMainFrame>
-            <Bladepage chassis={chassis} slot={slot}/>
-          </CMainFrame>
+          <Bladepage chassis={chassis} slot={slot}/>
         )
       } else {
         return <h1>Current view is : {view}</h1>        
       }
     } else if (platform === 'MTRQ') {
       return (
-        <CMainFrame>
-          <Bladepage chassis={0} slot={0}/>
-        </CMainFrame>
+        <Bladepage chassis={0} slot={0}/>
       )
     } else if (platform === 'EPIQ') {
       return <div>EPIQ</div>;
