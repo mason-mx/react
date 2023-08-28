@@ -6,11 +6,13 @@ import CMainFrame from './mainframe';
 import Instrument from './instrument';
 import SystemSetting from './systemsetting';
 import SideBar from './sidebar';
+import StackingSnackBar from './toast.js';
 
 function App() {
   const instr_comp = useRef(null);
   const sysset_comp = useRef(null);
   const sidebar_comp = useRef(null);
+  const toast_comp = useRef(null);
   return (
     <>
       <CNavbar callHome={() => {
@@ -26,7 +28,11 @@ function App() {
         <Instrument ref={instr_comp}/>
       </CMainFrame>
       <SystemSetting ref={sysset_comp}/>
-      <SideBar ref={sidebar_comp}/>
+      <SideBar ref={sidebar_comp}
+        callToast={() => {
+          toast_comp.current.addToast({"time": "11 mins ago", "message": "message 1"});
+        }}/>
+      <StackingSnackBar ref={toast_comp}/>
       <CFooter />
     </>
   );
