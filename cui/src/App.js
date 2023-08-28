@@ -8,11 +8,36 @@ import SystemSetting from './systemsetting';
 import SideBar from './sidebar';
 import StackingSnackBar from './toast.js';
 
+const WS_URL = 'ws://127.0.0.1:12345';
+
 function App() {
   const instr_comp = useRef(null);
   const sysset_comp = useRef(null);
   const sidebar_comp = useRef(null);
   const toast_comp = useRef(null);
+
+  const ws = new WebSocket(WS_URL);
+
+  const apiCall = {
+    event: "bts:subscribe",
+    data: { channel: "order_book_btcusd" },
+  };
+
+  ws.onopen = (event) => {
+    ws.send(JSON.stringify(apiCall));
+  };
+
+  ws.onmessage = function (event) {
+    const json = JSON.parse(event.data);
+    try {
+      if ((json.event = "data")) {
+        toast_comp.current.addToast({"time": "11 mins ago", "message": event.data});
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <CNavbar callHome={() => {
