@@ -15,7 +15,7 @@ function SnackBar(props) {
     );
 }
 
-const { Children, forwardRef, useImperativeHandle } = React;
+const { forwardRef, useImperativeHandle } = React;
 
 const StackingSnackBar = forwardRef((props, ref) => {
     const [toasts, setToasts] = useState([]);
@@ -25,6 +25,7 @@ const StackingSnackBar = forwardRef((props, ref) => {
             var toast = (<SnackBar
                 time = {obj.time}
                 message = {obj.message}
+                key = {toasts.length} // There is an issue of having same key, as two ws messages could arrive at the same time
             />);
             setToasts(current => [toast, ...current]);
         }
@@ -33,7 +34,7 @@ const StackingSnackBar = forwardRef((props, ref) => {
     if (toasts.length > 0) {
         return (
             <ToastContainer className="p-3" position="bottom-end" style={{ zIndex: 1031 }}>
-                {Children.toArray(toasts)}
+                {toasts}
             </ToastContainer>
         );
     }
