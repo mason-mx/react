@@ -11,7 +11,7 @@ import StackingSnackBar from './toast.js';
 const WS_URL = 'ws://127.0.0.1:12345';
 var ws = null;
 
-function CWebsocket(toast_comp) {
+function CWebsocket(toast_comp, footer_comp) {
   ws = new WebSocket(WS_URL);
 
   if ("WebSocket" in window){
@@ -24,43 +24,51 @@ function CWebsocket(toast_comp) {
       ws.send(JSON.stringify(apiCall));
     };
 
-    ws.onmessage = function (evt)
+    ws.onmessage = function (event)
     {
-      var data = JSON.parse(evt.data)
-      console.log(data);
-      try {
-        if ((data.event = "data")) {
-          toast_comp.current.addToast({"time": "11 mins ago", "message": evt.data});
-        }
-      } catch (err) {
-        console.log(err);
-      }
-      if(data.status === "error") {
-        console.log("Error\n" + data.status_message);
-        return;
-      }
+      const msg = JSON.parse(event.data);
+      const time = new Date(msg.date);
+      const timeStr = time.toLocaleTimeString();
 
-      if(data.hasOwnProperty("laser_status")) {
-        console.log(data.laser_status);
+      switch (msg.type) {
+        case "id":
+          break;
+        case "username":
+          break;
+        case "message":
+          toast_comp.current.addToast({"time": timeStr, "message": msg.text});
+          if(msg.hasOwnProperty("laser_status")) {
+            console.log(msg.laser_status);
+          }
+          break;
+        case "rejectusername":
+          break;
+        case "userlist":
+          break;
+        case "status":
+          footer_comp.current.updateMsg(msg.text);
+          break;
+        default:
+          break;
       }
     }
 
-    ws.onclose = function(e)
+    ws.onclose = function(err)
     {
-      console.log('Socket is closed. Reconnect will be attempted in 5 second.', e.reason);
+      footer_comp.current.updateMsg('Socket is closed. Reconnect will be attempted in 5 second.', err.reason);
       setTimeout(function() {
-        CWebsocket(toast_comp);
+        CWebsocket(toast_comp, footer_comp);
       }, 5000);
     };
 
     ws.onerror = function(err) {
-      console.log('Socket encountered error: ', err, 'Closing socket');
+      footer_comp.current.updateMsg('Socket encountered error: ', err, 'Closing socket');
       ws.close();
     }
   }
   else {
       // The browser doesn't support WebSocket
-      console.log("WebSocket NOT supported by your Browser!");
+      footer_comp.current.updateMsg("WebSocket NOT supported by your Browser!");
   }
  }
 
@@ -69,8 +77,9 @@ function App() {
   const sysset_comp = useRef(null);
   const sidebar_comp = useRef(null);
   const toast_comp = useRef(null);
+  const footer_comp = useRef(null);
 
-  CWebsocket(toast_comp);
+  CWebsocket(toast_comp, footer_comp);
 
   // const ws = new WebSocket(WS_URL);
 
@@ -114,7 +123,7 @@ function App() {
           toast_comp.current.addToast({"time": "11 mins ago", "message": "message 1"});
         }}/>
       <StackingSnackBar ref={toast_comp}/>
-      <CFooter />
+      <CFooter ref={footer_comp}/>
     </>
   );
 }
