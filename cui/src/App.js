@@ -115,13 +115,13 @@ function App() {
           sidebar_comp.current.clickMe();
         }}/>
       <CMainFrame>
-        <Instrument ref={instr_comp}/>
+        <Instrument ref={instr_comp}
+        updateSidebar={(obj) => {
+          sidebar_comp.current.updateInfo(obj);
+        }}/>
       </CMainFrame>
       <SystemSetting ref={sysset_comp}/>
-      <SideBar ref={sidebar_comp}
-        callToast={() => {
-          toast_comp.current.addToast({"time": "11 mins ago", "message": "message 1"});
-        }}/>
+      <SideBar ref={sidebar_comp}/>
       <StackingSnackBar ref={toast_comp}/>
       <CFooter ref={footer_comp}/>
     </>

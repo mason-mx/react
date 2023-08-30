@@ -15,7 +15,6 @@ const Instrument = forwardRef((props, ref) => {
   const [slot, setSlot] = useState(1);
   const [chassis, setChassis] = useState(0);
 
-
   const clickBlade=(chassis, slot) => {
     setSlot(slot);
     setChassis(chassis);
@@ -39,13 +38,21 @@ const Instrument = forwardRef((props, ref) => {
           setIsLoaded(true);
           setChassisData(result.chassis);
           setPlatform(result.platform);
+          props.updateSidebar(
+            {
+              chassis_mode: result.chassis_mode,
+              company: result.company,
+              server_version: result.server_version,
+              platform: result.platform
+            }
+          );
         },
         (error) => {
           setIsLoaded(true);
           setError(error);
         }
       )
-  }, [])
+  }, [props])
 
   if (error) {
     return <div>Error: {error.message}</div>;
