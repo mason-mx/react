@@ -41,7 +41,6 @@ const Instrument = forwardRef((props, ref) => {
           props.updateSidebar(
             {
               chassis_mode: result.chassis_mode,
-              company: result.company,
               server_version: result.server_version,
               platform: result.platform
             }
