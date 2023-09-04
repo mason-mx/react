@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ChannelGrid from './xchannel.js';
 
 function Bladepage(props) {
   const [error, setError] = useState(null);
@@ -21,7 +22,7 @@ function Bladepage(props) {
           setError(error);
         }
       )
-  })
+  }, [props])
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -31,7 +32,10 @@ function Bladepage(props) {
     return (
       <>
         <h1>{props.chassis}|{props.slot}: {bladeDate.model}</h1>
-        {JSON.stringify(bladeDate)}
+        {/* {JSON.stringify(bladeDate)} */}
+        <div className='row'>
+          <ChannelGrid slot={props.slot} model={bladeDate.channels}/>
+        </div>
       </>
     );
   }
