@@ -9,6 +9,7 @@ function populateProperty(slot, channel, key, value) {
 const ChannelPanel = (props) => {
     const id = "slot_" + props.slot + "_channel_" + props.channel;
     const model = props.model;
+
     return (
         <div className="card" id={id}>
             <div className="card-header">
@@ -23,7 +24,7 @@ const ChannelPanel = (props) => {
             </ul>
             <div className="card-body">
                 <form className="d-flex justify-content-end">
-                    <button type="submit" className="btn btn-primary">Edit</button>
+                    <button className="btn btn-primary" onClick={(e) => props.updatePopup(props.channel)}>Edit</button>
                 </form>
             </div>
         </div>

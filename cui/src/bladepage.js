@@ -33,9 +33,7 @@ function Bladepage(props) {
       <>
         <h1>{props.chassis}|{props.slot}: {bladeDate.model}</h1>
         {/* {JSON.stringify(bladeDate)} */}
-        <div className='row'>
-          <ChannelGrid slot={props.slot} model={bladeDate.channels}/>
-        </div>
+        <ChannelGrid slot={props.slot} model={bladeDate.channels}/>
       </>
     );
   }

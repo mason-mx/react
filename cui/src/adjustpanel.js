@@ -8,12 +8,14 @@ import Form from 'react-bootstrap/Form';
 
 const { forwardRef, useImperativeHandle } = React;
 
-const SystemSetting = forwardRef((props, ref) => {
+const AdjustPanel = forwardRef((props, ref) => {
   const [show, setShow] = useState(false);
+  const [channelNumber, setChannelNumber] = useState(1);
   useImperativeHandle(ref, () => ({
-    clickMe() {
+    fillChannel(channelNumber) {
+        setChannelNumber(channelNumber);
         setShow(true);
-    }
+      }
   }));
 
   const handleClose = () => setShow(false);
@@ -29,7 +31,7 @@ const SystemSetting = forwardRef((props, ref) => {
         >
         <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-            System Settings
+                <strong>CHANNEL {channelNumber}</strong>
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -74,6 +76,7 @@ const SystemSetting = forwardRef((props, ref) => {
             </Container>
         </Modal.Body>
         <Modal.Footer>
+            <Button onClick={handleClose}>Submit</Button>
             <Button onClick={handleClose}>Close</Button>
         </Modal.Footer>
         </Modal>
@@ -81,4 +84,4 @@ const SystemSetting = forwardRef((props, ref) => {
   );
 });
 
-export default SystemSetting;
+export default AdjustPanel;
