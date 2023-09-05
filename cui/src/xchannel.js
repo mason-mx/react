@@ -22,6 +22,11 @@ const ChannelGrid = (props) => {
     }
     return (
         <>
+          <div className='row mb-2'>
+            <form className="d-flex justify-content-end">
+              <button className="btn btn-primary" onClick={(e) => adjust_comp.current.fillChannel(0)}>Edit</button>
+            </form>
+          </div>
           <div className='row'>
             {channels}
           </div>

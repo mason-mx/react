@@ -11,14 +11,26 @@ const { forwardRef, useImperativeHandle } = React;
 const AdjustPanel = forwardRef((props, ref) => {
   const [show, setShow] = useState(false);
   const [channelNumber, setChannelNumber] = useState(1);
+  const [sync, setSync] = useState(false);
+
   useImperativeHandle(ref, () => ({
     fillChannel(channelNumber) {
         setChannelNumber(channelNumber);
         setShow(true);
+        setSync(false);
       }
   }));
 
   const handleClose = () => setShow(false);
+  const onSyncChannelChange = (evt) => {
+    setSync(evt.target.checked);
+  };
+  const select = (channelNumber === 0 ? <Form.Select disabled={sync} aria-label="Default select example">
+        <option>Select One Channel</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+    </Form.Select> : <></>);
 
   return (
     <>
@@ -35,8 +47,21 @@ const AdjustPanel = forwardRef((props, ref) => {
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <h4>Centered Modal</h4>
             <Container>
+            <Row>
+                <Col className="d-flex align-items-center" xs={12} md={6}>
+                    <Form.Check
+                        type="switch"
+                        id="custom-switch"
+                        label="Sync Channel"
+                        value="off"
+                        onChange={onSyncChannelChange}
+                    />
+                </Col>
+                <Col xs={12} md={6}>
+                    {select}
+                </Col>
+            </Row>
             <Row>
                 <Col xs={12} md={8}>
                 <Form>

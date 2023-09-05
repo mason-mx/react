@@ -19,4 +19,5 @@ code {
 .main-frame {
   top: 56px;
   position: relative;
+  padding-bottom: 32px;
 }
