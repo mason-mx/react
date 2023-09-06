@@ -79,7 +79,7 @@ const AdjustPanel = forwardRef((props, ref) => {
                 </Row>
                 <Row>
                     {Object.keys(model).map((key, index) => (
-                        populateProperty(props.slot, props.channel, key, model[key], index)
+                        populateProperty(props.slot, channelNumber, key, model[key], index)
                     ))}
                 </Row>
             </Container>

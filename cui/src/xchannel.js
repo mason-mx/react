@@ -30,7 +30,7 @@ const ChannelGrid = (props) => {
           <div className='row'>
             {channels}
           </div>
-          <AdjustPanel ref={adjust_comp} model={model[0]}/>
+          <AdjustPanel slot={props.slot} ref={adjust_comp} model={model[0]}/>
         </>
     )
 }

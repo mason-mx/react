@@ -56,9 +56,9 @@ function CWebsocket(toast_comp, footer_comp) {
     ws.onclose = function(err)
     {
       footer_comp.current.updateMsg('Socket is closed. Reconnect will be attempted in 5 second.', err.reason);
-      setTimeout(function() {
-        CWebsocket(toast_comp, footer_comp);
-      }, 5000);
+      // setTimeout(function() {
+      //   CWebsocket(toast_comp, footer_comp);
+      // }, 5000);
     };
 
     ws.onerror = function(err) {
