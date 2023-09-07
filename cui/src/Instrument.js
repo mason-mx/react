@@ -31,7 +31,7 @@ const Instrument = forwardRef((props, ref) => {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch("http://localhost/instrument")
+    fetch("/instrument?depth=2")
       .then(res => res.json())
       .then(
         (result) => {
