@@ -6,6 +6,7 @@ const InputControl = (props) => {
     const display = model.unit === undefined ? model.set : model.set + " " + model.unit;
     const [value, setValue] = useState(display);
     const [valid, setValid] = useState("form-control");
+    const [label, setLabel] = useState(props.label);
     const onInputChange = (evt) => {
         var input = evt.target.value;
         if(isNaN(input))
@@ -27,20 +28,29 @@ const InputControl = (props) => {
             }
         }
         setValue(evt.target.value);
+        setLabel(props.label + ": " + display);
     };
     const onInputBlur = (evt) => {
         if(evt.target.value === "")
         {
             setValue(display);
             setValid("form-control");
+            setLabel(props.label);
         }
     };
 
     return (
-        <form className="form-floating">
-            <input type="text" className={valid} id={id} placeholder={display} value={value} onChange={onInputChange} onBlur={onInputBlur}/>
-            <label htmlFor={id}>{props.label}</label>
-        </form>
+        <div class="input-group">
+            <form className="form-floating">
+                <input type="text" className={valid} id={id} placeholder={display} value={value} onChange={onInputChange} onBlur={onInputBlur}/>
+                <label htmlFor={id}>{label}</label>
+            </form>
+            <button className="btn btn-outline-secondary" type="button">+</button>
+            <button className="btn btn-outline-secondary" type="button">-</button>
+            <button className="btn btn-outline-secondary" type="button">Min</button>
+            <button className="btn btn-outline-secondary" type="button">Max</button>
+            <button className="btn btn-outline-secondary" type="button">CUI-4</button>
+        </div>  
     )
 }
 

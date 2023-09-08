@@ -12,11 +12,7 @@ const SettableControl = (props) => {
     try {
         if(isBoolean(model.set))
         {
-            return (
-                <div className="h-100 p-2 d-flex align-items-center">
-                    <SwitchControl label={props.label} model={model}/>
-                </div>
-            )
+            return <SwitchControl label={props.label} model={model}/>;
         }
         if('options' in model)
         {
@@ -24,21 +20,14 @@ const SettableControl = (props) => {
                 <option value={opt} key={index}>{opt}</option>
             );
             return (
-                <>
-                    <FloatingLabel controlId="floatingSelectGrid" label={props.label}>
-                        <Form.Select id={id} defaultValue={model.set}>
-                            {options}
-                        </Form.Select>
-                    </FloatingLabel>
-                </>
+                <FloatingLabel controlId="floatingSelectGrid" label={props.label}>
+                    <Form.Select id={id} defaultValue={model.set}>
+                        {options}
+                    </Form.Select>
+                </FloatingLabel>
             )
         }
-        return (
-            <>
-                {/* <div>CUI-4</div> */}
-                <InputControl label={props.label} model={model}/>
-            </>
-        )
+        return <InputControl label={props.label} model={model}/>;
     } catch (error) {
         return (
             <>

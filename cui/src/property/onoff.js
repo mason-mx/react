@@ -8,12 +8,18 @@ const SwitchControl = (props) => {
         setChecked(evt.target.checked);
     };
     return (
-        <div>
-            <span>{props.label}: </span>
-            <label className="cswitch">
-                <input type="checkbox" id={id} checked={checked} onChange={onSwitchChange}/>
-                <span className="slider"></span>
-            </label>
+        <div className="h-100 p-3">
+            <div className="d-flex justify-content-between">
+                <div>
+                    <span>{props.label}: </span><span>{model.set ? "ON":"OFF"}</span>
+                </div>
+                <div>
+                    <label className="cswitch">
+                        <input type="checkbox" id={id} checked={checked} onChange={onSwitchChange}/>
+                        <span className="slider"></span>
+                    </label>
+                </div>
+            </div>
         </div>
     )
 }
