@@ -6,6 +6,7 @@ const SwitchControl = (props) => {
     const [checked, setChecked] = useState(model.set);
     const onSwitchChange = (evt) => {
         setChecked(evt.target.checked);
+        props.onSubmit(evt.target.checked);
     };
     return (
         <div className="h-100 p-3">

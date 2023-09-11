@@ -15,6 +15,7 @@ export function putData(url, data){
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
+      "cache-control": "no-cache"
     },
     body: JSON.stringify(data),
   })

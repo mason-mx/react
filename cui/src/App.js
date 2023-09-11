@@ -154,12 +154,14 @@ function App() {
         }}
         callSidebar={() => {
           sidebar_comp.current.clickMe();
-        }}/>
+        }}
+      />
       <CMainFrame>
         <Instrument ref={instr_comp}
         updateSidebar={(obj) => {
           sidebar_comp.current.updateInfo(obj);
-        }}/>
+        }}
+      />
       </CMainFrame>
       <SystemSetting ref={sysset_comp}/>
       <SideBar ref={sidebar_comp}/>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Spinner from 'react-bootstrap/Spinner';
 import ChannelGrid from './xchannel.js';
 
 function Bladepage(props) {
@@ -27,13 +28,18 @@ function Bladepage(props) {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <Spinner animation="grow" variant="danger"  size="sm" />
+        <Spinner animation="grow" variant="warning"  size="sm" />
+        <Spinner animation="grow" variant="info"  size="sm" />
+      </>);
   } else {
     return (
       <>
         <h1>{props.chassis}|{props.slot}: {bladeDate.model}</h1>
         {/* {JSON.stringify(bladeDate)} */}
-        <ChannelGrid slot={props.slot} model={bladeDate.channels}/>
+        <ChannelGrid chassis={props.chassis} slot={props.slot} model={bladeDate.channels}/>
       </>
     );
   }

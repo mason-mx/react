@@ -3,7 +3,7 @@ import React from "react"
 const isBoolean = val => 'boolean' === typeof val;
 
 const PlainControl = (props) => {
-    const id = "slot_" + props.slot + "_channel_" + props.channel + "_" + props.label;
+    const id = "slot_" + props.slot + "_channel_" + props.channel + "_" + props.attr;
     const model = props.model;
     try {
         if('act' in model && 'set' in model)

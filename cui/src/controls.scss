@@ -1,6 +1,11 @@
 $cswitch-width: 4.0em;
 $cswitch-dot-width-margin: 0.2em;
 
+.settable-property {
+    background-color: lavender;
+    border: 1px solid lavender;
+}
+
 .cswitch {
     position: relative;
     display: inline-block;
