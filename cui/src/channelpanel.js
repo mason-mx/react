@@ -44,40 +44,32 @@ const ChannelPanel = (props) => {
     };
 
     const onFetchFailure = (error) => {
+        setIsPollingEnabled(false);
     };
 
     useEffect(() => {
         const pollingCallback = () => {
           getData(url, onFetchSuccess, onFetchFailure);
-    
-          // Simulating an API failure in the polling callback
-        //   const shouldFail = Math.random() < 0.2; // Simulate 20% chance of API failure
-    
-        //   if (shouldFail) {
-        //     setIsPollingEnabled(false);
-        //     console.log('Polling failed. Stopped polling.');
-        //   }
         };
-    
+
         const startPolling = () => {
           timerIdRef.current = setInterval(pollingCallback, 1000);
         };
     
         const stopPolling = () => {
-            console.log('Stop Polling...');
             clearInterval(timerIdRef.current);
         };
-    
+
         if (isPollingEnabled) {
             startPolling();
         } else {
             stopPolling();
         }
-    
+
         return () => {
             stopPolling();
         };
-    }, [isPollingEnabled]);
+    }, [url, isPollingEnabled]);
 
     return (
         <div className="card" id={id}>

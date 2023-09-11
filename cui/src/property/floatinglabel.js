@@ -17,7 +17,7 @@ const InputControl = (props) => {
             setLabel(props.label);
             setValid("form-control");
         }
-    }, [props]);
+    }, [props, model.set, model.unit, onedit]);
 
     const onInputChange = (evt) => {
         setOnEdit(true);
