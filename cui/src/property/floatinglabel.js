@@ -40,17 +40,24 @@ const InputControl = (props) => {
     };
 
     return (
-        <div class="input-group">
-            <form className="form-floating">
-                <input type="text" className={valid} id={id} placeholder={display} value={value} onChange={onInputChange} onBlur={onInputBlur}/>
-                <label htmlFor={id}>{label}</label>
-            </form>
-            <button className="btn btn-outline-secondary" type="button">+</button>
-            <button className="btn btn-outline-secondary" type="button">-</button>
-            <button className="btn btn-outline-secondary" type="button">Min</button>
-            <button className="btn btn-outline-secondary" type="button">Max</button>
-            <button className="btn btn-outline-secondary" type="button">CUI-4</button>
-        </div>  
+        <div className="row">
+            <div className="col-12 col-lg-7 mb-3 mb-lg-0">
+                <div className="input-group">
+                    <form className="form-floating">
+                        <input type="text" className={valid} id={id} placeholder={display} value={value} onChange={onInputChange} onBlur={onInputBlur}/>
+                        <label htmlFor={id}>{label}</label>
+                    </form>
+                    <button className="btn btn-outline-secondary" type="button">Set</button>
+                </div>
+            </div>
+            <div className="col-12 col-lg-5 btn-group" role="group">
+                <button className="btn btn-outline-secondary" type="button">+</button>
+                <button className="btn btn-outline-secondary" type="button">-</button>
+                <button className="btn btn-outline-secondary" type="button">Min</button>
+                <button className="btn btn-outline-secondary" type="button">Max</button>
+                <button className="btn btn-outline-secondary" type="button">CUI-4</button>
+            </div>
+        </div>
     )
 }
 

@@ -19,7 +19,7 @@ function populateActProperty(slot, channel, key, value, index) {
     if('act' in value)
     {
         return (
-            <li className="list-group-item bg-secondary bg-gradient bg-opacity-50" key={index}>
+            <li className="list-group-item bg-transparent" key={index}>
                 <PlainControl slot={slot} channel={channel} label={key} model={value}/>
             </li>
         )
@@ -37,14 +37,14 @@ const ChannelPanel = (props) => {
                 <strong>CHANNEL {props.channel}</strong>
             </div>
             <div className="card-body">
-                <ul className="list-group list-group-flush">
+                <ul className="list-group list-group-flush bg-secondary bg-gradient bg-opacity-50">
                     {Object.keys(model).map((key, index) => (
                         populateActProperty(props.slot, props.channel, key, model[key], index)
                     ))}
                 </ul>
                 <ul className="list-group list-group-flush">
                     {Object.keys(model).map((key, index) => (
-                        populateSetProperty(props.slot, props.channel, key, model[key])
+                        populateSetProperty(props.slot, props.channel, key, model[key], index)
                     ))}
                 </ul>
                 {/* <form className="d-flex justify-content-end">

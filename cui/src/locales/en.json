@@ -1,0 +1,6 @@
+{
+    "error_ws_closed": "Socket is closed. Reconnect will be attempted in 5 second.",
+    "current_temperature": "Current temperature",
+    "feels_like": "Feels like",
+    "humidity": "Humidity"
+  }

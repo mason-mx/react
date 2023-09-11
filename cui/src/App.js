@@ -8,11 +8,47 @@ import SystemSetting from './systemsetting';
 import SideBar from './sidebar';
 import StackingSnackBar from './toast.js';
 
+import { useTranslation } from "react-i18next";
+
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import translationEN from "./locales/en.json";
+import translationFR from "./locales/fr.json";
+
+var language = navigator.language ||   // All browsers
+              navigator.userLanguage; // IE <= 10
+
+var shortLang = language;
+if (shortLang.indexOf('-') !== -1)
+    shortLang = shortLang.split('-')[0];
+
+if (shortLang.indexOf('_') !== -1)
+    shortLang = shortLang.split('_')[0];
+
+const resources = {
+  en: {
+    translation: translationEN,
+  },
+  fr: {
+    translation: translationFR,
+  },
+};
+
+i18n.use(initReactI18next).init({
+  resources,
+  lng: shortLang,
+  fallbackLng: shortLang,
+  interpolation: {
+    escapeValue: false,
+  },
+});
+
 const WS_URL = 'ws://127.0.0.1:12345';
 var ws = null;
 
 function CWebsocket(toast_comp, footer_comp) {
   ws = new WebSocket(WS_URL);
+  const { t } = useTranslation();
 
   if ("WebSocket" in window){
     ws.onopen = function()
@@ -55,7 +91,7 @@ function CWebsocket(toast_comp, footer_comp) {
 
     ws.onclose = function(err)
     {
-      footer_comp.current.updateMsg('Socket is closed. Reconnect will be attempted in 5 second.', err.reason);
+      footer_comp.current.updateMsg(t("error_ws_closed"), err.reason);
       // setTimeout(function() {
       //   CWebsocket(toast_comp, footer_comp);
       // }, 5000);
