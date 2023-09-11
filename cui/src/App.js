@@ -41,6 +41,11 @@ i18n.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   },
+  parseMissingKeyHandler: (key, defaultValue) => {
+    let string = key.replaceAll('_', " ");
+    string = string.replace(/^./, string[0].toUpperCase())
+    return string;
+  },
 });
 
 const WS_URL = 'ws://127.0.0.1:12345';
