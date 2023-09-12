@@ -1,13 +1,19 @@
-import React, { useState } from "react"
+import React, { useState, useEffect  } from "react"
 
 const SwitchControl = (props) => {
     const id = "slot_" + props.slot + "_channel_" + props.channel + "_" + props.label;
-    const model = props.model;
+    const [model, setModel] = useState(props.model);
     const [checked, setChecked] = useState(model.set);
     const onSwitchChange = (evt) => {
         setChecked(evt.target.checked);
         props.onSubmit(evt.target.checked);
     };
+
+    useEffect(() => {
+        setModel(props.model);
+        setChecked(model.set);
+    }, [props, model.set]);
+
     return (
         <div className="h-100 p-3">
             <div className="d-flex justify-content-between">

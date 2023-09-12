@@ -53,7 +53,7 @@ const ChannelPanel = (props) => {
         };
 
         const startPolling = () => {
-          timerIdRef.current = setInterval(pollingCallback, 1000);
+          timerIdRef.current = setInterval(pollingCallback, 5000);
         };
     
         const stopPolling = () => {
