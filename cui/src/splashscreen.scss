@@ -1,0 +1,107 @@
+.splash-screen {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+    animation: blurFadeOut 1.0s forwards;
+    animation-iteration-count: 1;
+    animation-delay: 8s;
+	background: #3C1053;
+}
+
+@keyframes blurFadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+        left: -9999px; 
+    }
+}
+.content {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	z-index: 1000;
+}
+.splash-screen h2 {
+	position: absolute;
+	top: 50%;
+	line-height: 100px;
+	height: 100px;
+	margin-top: -50px;
+	font-size: 100px;
+	width: 100%;
+	text-align: center;
+	color: transparent;
+	animation: blurFadeInOut 3s ease-in backwards;
+}
+.splash-screen h2.frame-1 {
+	animation-delay: 0s;
+}
+.splash-screen h2.frame-2 {
+	animation-delay: 2.5s;
+}
+.splash-screen h2.frame-3 {
+	animation-delay: 5s;
+}
+.splash-screen h2.frame-4 {
+	font-size: 200px;
+	animation-delay: 7.5s;
+}
+.splash-screen h2.frame-5 {
+	animation: none;
+	color: transparent;
+	text-shadow: 0px 0px 1px #fff;
+}
+.splash-screen h2.frame-5 span {
+	animation: blurFadeIn 3s ease-in 12s backwards;
+	color: transparent;
+	text-shadow: 0px 0px 1px #fff;
+}
+.splash-screen h2.frame-5 span:nth-child(2) {
+	animation-delay: 13s;
+}
+.splash-screen h2.frame-5 span:nth-child(3) {
+	animation-delay: 14s;
+}
+
+@keyframes blurFadeInOut{
+	0%{
+		opacity: 0;
+		text-shadow: 0px 0px 40px #fff;
+		transform: scale(0.9);
+	}
+	20%,75%{
+		opacity: 1;
+		text-shadow: 0px 0px 1px #fff;
+		transform: scale(1);
+	}
+	100%{
+		opacity: 0;
+		text-shadow: 0px 0px 50px #fff;
+		transform: scale(0);
+	}
+}
+@keyframes blurFadeIn{
+	0%{
+		opacity: 0;
+		text-shadow: 0px 0px 40px #fff;
+		transform: scale(1.3);
+	}
+	50%{
+		opacity: 0.5;
+		text-shadow: 0px 0px 10px #fff;
+		transform: scale(1.1);
+	}
+	100%{
+		opacity: 1;
+		text-shadow: 0px 0px 1px #fff;
+		transform: scale(1);
+	}
+}

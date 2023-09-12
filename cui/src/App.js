@@ -2,6 +2,7 @@ import './App.css';
 import React, { useRef } from "react";
 import CNavbar from './navbar';
 import CFooter from './footer';
+import CSplash from './splashscreen';
 import CMainFrame from './mainframe';
 import Instrument from './instrument';
 import SystemSetting from './systemsetting';
@@ -167,6 +168,7 @@ function App() {
       <SideBar ref={sidebar_comp}/>
       <StackingSnackBar ref={toast_comp}/>
       <CFooter ref={footer_comp}/>
+      {/* <CSplash/> */}
     </>
   );
 }
