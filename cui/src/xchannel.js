@@ -29,6 +29,9 @@ const ChannelGrid = (props) => {
             </form>
           </div> */}
           <div className='row'>
+            <h3>{props.title}</h3>
+          </div>
+          <div className='row'>
             {channels}
           </div>
           {/* <AdjustPanel slot={props.slot} ref={adjust_comp} model={model[0]}/> */}

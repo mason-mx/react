@@ -35,13 +35,35 @@ function Bladepage(props) {
         <Spinner animation="grow" variant="info"  size="sm" />
       </>);
   } else {
-    return (
-      <>
-        <h1>{props.chassis}|{props.slot}: {bladeDate.model}</h1>
-        {/* {JSON.stringify(bladeDate)} */}
-        <ChannelGrid chassis={props.chassis} slot={props.slot} model={bladeDate.channels}/>
-      </>
-    );
+    if("switch_type" in bladeDate)
+    {
+      try {
+        if("NxN" === bladeDate.channels[0].state.device_type)
+        {
+          return (
+            <>
+              <p>{JSON.stringify(bladeDate)}</p>
+            </>
+          );
+        }
+      } catch (error) {
+        return (
+          <>
+            <h1>{props.chassis}|{props.slot}: {bladeDate.model}</h1>
+          </>
+        );
+      }
+    } else if (bladeDate.model.includes("BERT-1102") || bladeDate.model.includes("OSA")) {
+      return (
+        <>
+          <p>{JSON.stringify(bladeDate)}</p>
+        </>
+      );
+    } else {
+      return (
+        <ChannelGrid chassis={props.chassis} slot={props.slot} title={bladeDate.model} model={bladeDate.channels}/>
+      );
+    }
   }
 }
 

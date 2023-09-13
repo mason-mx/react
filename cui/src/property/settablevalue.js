@@ -14,7 +14,7 @@ const SettableControl = (props) => {
     const model = props.model;
 
     const onSubmit = (value) => {
-        putData(url, value);
+        putData(url, {set:value});
     };
     try {
         if(isBoolean(model.set))
