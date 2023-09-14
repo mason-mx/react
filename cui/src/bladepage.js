@@ -42,7 +42,7 @@ function Bladepage(props) {
         if("NxN" === bladeDate.channels[0].state.device_type)
         {
           return (
-            <NxNSwitch chassis={props.chassis} slot={props.slot} title={bladeDate.model} model={bladeDate.channels} />
+            <NxNSwitch chassis={props.chassis} slot={props.slot} title={bladeDate.model} model={bladeDate.channels[0]} />
           );
         }
       } catch (error) {
