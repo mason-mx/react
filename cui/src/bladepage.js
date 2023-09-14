@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
-import ChannelGrid from './xchannel.js';
+import ChannelGrid from './xchannel';
+import NxNSwitch from './templates/nxnswitch';
 
 function Bladepage(props) {
   const [error, setError] = useState(null);
@@ -41,9 +42,7 @@ function Bladepage(props) {
         if("NxN" === bladeDate.channels[0].state.device_type)
         {
           return (
-            <>
-              <p>{JSON.stringify(bladeDate)}</p>
-            </>
+            <NxNSwitch chassis={props.chassis} slot={props.slot} title={bladeDate.model} model={bladeDate.channels} />
           );
         }
       } catch (error) {
