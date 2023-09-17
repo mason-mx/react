@@ -13,8 +13,14 @@ const SettableControl = (props) => {
     const url = "/instrument/chassis" +  + props.chassis + "/blade" + props.slot + "/channel" + props.channel + "/" + props.attr;
     const model = props.model;
 
+    const onPutSuccess = (result) => {
+    };
+
+    const onPutFailure = (error) => {
+    };
+
     const onSubmit = (value) => {
-        putData(url, {set:value});
+        putData(url, {set:value}, onPutSuccess, onPutFailure);
     };
     try {
         if(isBoolean(model.set))

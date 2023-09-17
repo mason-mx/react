@@ -4,14 +4,12 @@ import { useTranslation } from "react-i18next";
 import {getData, putData} from '../fetch'
 
 const NxNSwitch = (props) => {
-    const id = "slot_" + props.slot + "_channel_" + props.channel;
+    //const id = "slot_" + props.slot + "_channel_" + props.channel;
     const url = "/instrument/chassis" +  + props.chassis + "/blade" + props.slot + "/channel1";
     const timerIdRef = useRef(null);
     const { t } = useTranslation();
 
-    const [isPollingEnabled, setIsPollingEnabled] = useState(true);
     const [model, setModel] = useState(props.model);
-
     const [input, setInput] = useState(0);
     const [output, setOutput] = useState(0);
 
@@ -48,37 +46,27 @@ const NxNSwitch = (props) => {
         if(item.linked_to > 0) { connections ++ }
     });
 
+    const setupTimeouts = () => {
+        timerIdRef.current = setTimeout(() => {
+            getData(url, onFetchSuccess, onFetchFailure);
+        }, 1000);
+    };
+
     const onFetchSuccess = (result) => {
         setModel(result);
+        setupTimeouts();
     };
 
     const onFetchFailure = (error) => {
-        setIsPollingEnabled(false);
+        clearTimeout(timerIdRef.current);
     };
 
     useEffect(() => {
-        const pollingCallback = () => {
-          getData(url, onFetchSuccess, onFetchFailure);
-        };
-
-        const startPolling = () => {
-          timerIdRef.current = setInterval(pollingCallback, 1000);
-        };
-    
-        const stopPolling = () => {
-            clearInterval(timerIdRef.current);
-        };
-
-        if (isPollingEnabled) {
-            startPolling();
-        } else {
-            stopPolling();
-        }
-
+        setupTimeouts();
         return () => {
-            stopPolling();
+            clearTimeout(timerIdRef.current);
         };
-    }, [url, isPollingEnabled]);
+    });
 
     return (
         <>

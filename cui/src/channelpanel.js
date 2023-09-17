@@ -34,42 +34,56 @@ const ChannelPanel = (props) => {
     const id = "slot_" + props.slot + "_channel_" + props.channel;
     const url = "/instrument/chassis" +  + props.chassis + "/blade" + props.slot + "/channel" + props.channel;
     const timerIdRef = useRef(null);
-    const [isPollingEnabled, setIsPollingEnabled] = useState(true);
+    //const [isPollingEnabled, setIsPollingEnabled] = useState(true);
     const [model, setModel] = useState(props.model);
 
     const { t } = useTranslation();
 
+    const setupTimeouts = () => {
+        timerIdRef.current = setTimeout(() => {
+            getData(url, onFetchSuccess, onFetchFailure);
+        }, 1000);
+    };
+
     const onFetchSuccess = (result) => {
         setModel(result);
+        setupTimeouts();
     };
 
     const onFetchFailure = (error) => {
-        setIsPollingEnabled(false);
+        clearTimeout(timerIdRef.current);
     };
 
-    useEffect(() => {
-        const pollingCallback = () => {
-          getData(url, onFetchSuccess, onFetchFailure);
-        };
+    // useEffect(() => {
+    //     const pollingCallback = () => {
+    //       getData(url, onFetchSuccess, onFetchFailure);
+    //     };
 
-        const startPolling = () => {
-          timerIdRef.current = setInterval(pollingCallback, 5000);
-        };
+    //     const startPolling = () => {
+    //       timerIdRef.current = setInterval(pollingCallback, 5000);
+    //     };
     
-        const stopPolling = () => {
-            clearInterval(timerIdRef.current);
-        };
+    //     const stopPolling = () => {
+    //         clearInterval(timerIdRef.current);
+    //     };
 
-        if (isPollingEnabled) {
-            startPolling();
-        } else {
-            stopPolling();
-        }
+    //     if (isPollingEnabled) {
+    //         startPolling();
+    //     } else {
+    //         stopPolling();
+    //     }
 
+    //     return () => {
+    //         stopPolling();
+    //     };
+    // }, [url, isPollingEnabled]);
+
+    useEffect(() => {
+        setupTimeouts();
         return () => {
-            stopPolling();
+            clearTimeout(timerIdRef.current);
         };
-    }, [url, isPollingEnabled]);
+    });
 
     return (
         <div className="card" id={id}>
