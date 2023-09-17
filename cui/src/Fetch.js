@@ -10,7 +10,7 @@ export function postData(url, data){
   .then(json => console.log(json)); 
 }
 
-export function putData(url, data){
+export function putData(url, data, callBackFunc1, callBackFunc2){
   fetch(url, {
     method: 'PUT',
     headers: {
@@ -20,7 +20,10 @@ export function putData(url, data){
     body: JSON.stringify(data),
   })
   .then(res => res.json())
-  .then(json => console.log(json)); 
+  .then(
+    (result) => { callBackFunc1(result); },
+    (error) => { callBackFunc2(error); }
+  )
 }
 
 export function getData(url, callBackFunc1, callBackFunc2){
