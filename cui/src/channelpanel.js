@@ -47,7 +47,6 @@ const ChannelPanel = (props) => {
 
     const onFetchSuccess = (result) => {
         setModel(result);
-        setupTimeouts();
     };
 
     const onFetchFailure = (error) => {

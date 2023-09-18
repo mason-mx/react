@@ -3,6 +3,9 @@ import React, { useEffect, useState, useRef } from "react"
 import { useTranslation } from "react-i18next";
 import {getData, putData} from '../fetch'
 
+import "../controls.scss";
+import { XCircle } from 'react-bootstrap-icons';
+
 const NxNSwitch = (props) => {
     //const id = "slot_" + props.slot + "_channel_" + props.channel;
     const url = "/instrument/chassis" +  + props.chassis + "/blade" + props.slot + "/channel1";
@@ -35,6 +38,10 @@ const NxNSwitch = (props) => {
         putData(url + '/state', {set: input + ',' + output}, onPutSuccess, onPutFailure);
     };
 
+    const onDisconnect = (input) => {
+        putData(url + '/state', {set: input + ',0'}, onPutSuccess, onPutFailure);
+    };
+
     const onDisconnectAll = () => {
         putData(url + '/park', {set: "ALL"}, onPutSuccess, onPutFailure);
     };
@@ -54,7 +61,7 @@ const NxNSwitch = (props) => {
 
     const onFetchSuccess = (result) => {
         setModel(result);
-        setupTimeouts();
+        //setupTimeouts();
     };
 
     const onFetchFailure = (error) => {
@@ -98,13 +105,19 @@ const NxNSwitch = (props) => {
             <div className="row">
                 <div className="col-4">
                     {inputs.map((item, index) =>
-                        <div className={(item.linked_to > 0 || item.switch === input) ? 'd-none' : "col-12 btn btn-outline-secondary"} key={index} id={"input" + (index + 1)} onClick={onInputClick}>{index + 1}</div>
+                        (item.linked_to === 0 && item.switch !== input) ?
+                        <div className="col-12 btn btn-outline-secondary mb-1" key={index} id={"input" + (index + 1)} onClick={onInputClick}>{index + 1}</div>
+                        : null
                     )}
                 </div>
                 <div className="col-4">
                     {
                         inputs.map((item, index) => (
-                            <button type="button" className={item.linked_to > 0 ? 'col-12 btn btn-outline-success' : "d-none"} key={index} id={"connection" + (index + 1)}>{index + 1}---{item.linked_to}</button>
+                            item.linked_to > 0 ? 
+                            <button type="button" className='col-12 btn btn-outline-success mb-1 hover-button' key={index} attr={index + 1} id={"connection" + (index + 1)} onClick={() => {onDisconnect(index + 1)}}>
+                                {index + 1}---{item.linked_to} <XCircle className="mb-1" color="#dc3545" />
+                            </button>
+                            : null
                         ))
                     }
                     {connections > 1 &&
@@ -113,7 +126,9 @@ const NxNSwitch = (props) => {
                 </div>
                 <div className="col-4">
                     {outputs.map((item, index) =>
-                        <div className={(item.linked_to > 0 || item.switch === output) ? 'd-none' : "col-12 btn btn-outline-secondary"} key={index} id={"output" + (index + 1)} onClick={onOutputClick}>{index + 1}</div>
+                        (item.linked_to === 0 && item.switch !== output) ?
+                        <div className="col-12 btn btn-outline-secondary mb-1" key={index} id={"output" + (index + 1)} onClick={onOutputClick}>{index + 1}</div>
+                        : null
                     )}
                 </div>
             </div>

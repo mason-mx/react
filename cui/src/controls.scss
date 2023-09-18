@@ -50,3 +50,14 @@ $cswitch-dot-width-margin: 0.2em;
         }
     }
 }
+
+.hover-button
+{
+    svg {
+        display:none;
+    }
+
+    &:hover svg {
+        display:inline-block;
+    }
+}
