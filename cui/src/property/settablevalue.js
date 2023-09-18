@@ -40,7 +40,7 @@ const SettableControl = (props) => {
                 </FloatingLabel>
             )
         }
-        return <InputControl label={props.label} id={id} model={model}/>;
+        return <InputControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
     } catch (error) {
         return (
             <>

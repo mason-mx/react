@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from "react"
+import { getStepsizebyValues } from "../util"
 
 const InputControl = (props) => {
     const [model, setModel] = useState(props.model);
     const display = model.unit === undefined ? model.set : model.set + " " + model.unit;
     const [value, setValue] = useState(display);
+    const [curValue, setCurrentValue] = useState(model.set);
     const [valid, setValid] = useState("form-control");
     const [label, setLabel] = useState(props.label);
-    const [onedit, setOnEdit] = useState(false);
+    const [onEdit, setOnEdit] = useState(false);
+
+    const step = getStepsizebyValues(model.min, model.max, model.set);
 
     useEffect(() => {
-        if(!onedit)
+        if(!onEdit)
         {
             setModel(props.model);
             var display = model.unit === undefined ? model.set : model.set + " " + model.unit;
             setValue(display);
+            setCurrentValue(model.set);
             setLabel(props.label);
             setValid("form-control");
         }
-    }, [props, model.set, model.unit, onedit]);
+    }, [props, model.set, model.unit, onEdit]);
 
     const onInputChange = (evt) => {
         setOnEdit(true);
@@ -53,22 +58,27 @@ const InputControl = (props) => {
         setOnEdit(false);
     };
 
+    const onSet = (value) => {
+        props.onSubmit(value);
+        setOnEdit(false);
+    };
+
     return (
         <div className="row">
             <div className="col-12 col-lg-6 mb-1 mb-lg-0">
                 <div className="input-group">
                     <form className="form-floating">
-                        <input type="text" className={valid} id={props.id} placeholder={display} value={value} onChange={onInputChange} onBlur={onInputBlur}/>
+                        <input type="text" className={valid} id={props.id} placeholder={display} value={value} onChange={onInputChange} /*onBlur={onInputBlur}*//>
                         <label htmlFor={props.id}>{label}</label>
                     </form>
-                    <button className="btn btn-outline-secondary" type="button">Set</button>
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(value))}}>Set</button>
                 </div>
             </div>
             <div className="col-12 col-lg-6 btn-group" role="group">
-                <button className="btn btn-outline-secondary" type="button">+</button>
-                <button className="btn btn-outline-secondary" type="button">-</button>
-                <button className="btn btn-outline-secondary" type="button">Min</button>
-                <button className="btn btn-outline-secondary" type="button">Max</button>
+                <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue + step))}}>+</button>
+                <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue - step))}}>-</button>
+                <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet("min")}}>Min</button>
+                <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet("max")}}>Max</button>
             </div>
         </div>
     )

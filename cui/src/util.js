@@ -14,7 +14,7 @@ export const getStepsizebyValues = (min, max, set) => {
 
     var decimalPlaces = Math.max(decimalPlacesMin, decimalPlacesMax);
 
-    if(set != null || set != undefined)
+    if(set !== null || set !== undefined)
     {
         var decimalPlacesSet = getDecimalsbyValue(set);
         decimalPlaces = Math.max(decimalPlacesMin, decimalPlacesMax, decimalPlacesSet);
@@ -48,7 +48,8 @@ export const getStepsizebyValues = (min, max, set) => {
 
  export const convertDecimalstoString = (number, behind) => {
     var str, str1, str2 = '', data = number.toExponential(behind).replace('.','').split(/e/i);
-    str = data[0], mag = Number(data[1]), len = str.length;
+    str = data[0];
+    var mag = Number(data[1]), len = str.length;
     if(mag < 0){
         var decimals = mag * -1;
         for(var i = 1; i < decimals; i++ )
