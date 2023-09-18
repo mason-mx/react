@@ -113,9 +113,9 @@ const NxNSwitch = (props) => {
                 <div className="col-4">
                     {
                         inputs.map((item, index) => (
-                            item.linked_to > 0 ? 
+                            item.linked_to > 0 ?
                             <button type="button" className='col-12 btn btn-outline-success mb-1 hover-button' key={index} attr={index + 1} id={"connection" + (index + 1)} onClick={() => {onDisconnect(index + 1)}}>
-                                {index + 1}---{item.linked_to} <XCircle className="mb-1" color="#dc3545" />
+                                {index + 1}---{item.linked_to} <XCircle className="mb-1"/>
                             </button>
                             : null
                         ))
