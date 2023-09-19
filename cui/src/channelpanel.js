@@ -22,7 +22,7 @@ function populateActProperty(chassis, slot, channel, label, key, value, index) {
     if('act' in value)
     {
         return (
-            <div className="col-12 my-1" key={index}>
+            <div className="col-6 my-1" key={index}>
                 <PlainControl chassis={chassis} slot={slot} channel={channel} label={label} attr={key} model={value}/>
             </div>
         )

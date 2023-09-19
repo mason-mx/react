@@ -1,8 +1,7 @@
 import React from "react"
 import SwitchControl from "./onoff";
 import InputControl from './floatinglabel';
-import Form from 'react-bootstrap/Form';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import SelectControl from './floatingselects';
 
 import {putData} from '../fetch'
 
@@ -29,16 +28,7 @@ const SettableControl = (props) => {
         }
         if('options' in model)
         {
-            const options = model.options.map((opt, index) =>
-                <option value={opt} key={index}>{opt}</option>
-            );
-            return (
-                <FloatingLabel controlId="floatingSelectGrid" label={props.label}>
-                    <Form.Select id={id} defaultValue={model.set}>
-                        {options}
-                    </Form.Select>
-                </FloatingLabel>
-            )
+            return <SelectControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
         }
         return <InputControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
     } catch (error) {
