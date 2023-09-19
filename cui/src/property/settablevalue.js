@@ -30,7 +30,15 @@ const SettableControl = (props) => {
         {
             return <SelectControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
         }
-        return <InputControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
+        if('min' in model && 'max' in model)
+        {
+            return <InputControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
+        }
+        return (
+            <>
+                <span>{props.label}: </span><span>{JSON.stringify(model)}</span>
+            </>
+        )
     } catch (error) {
         return (
             <>
