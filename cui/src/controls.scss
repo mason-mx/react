@@ -6,6 +6,11 @@ $cswitch-dot-width-margin: 0.2em;
     border: 1px solid lavender;
 }
 
+.readonly {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .cswitch {
     position: relative;
     display: inline-block;

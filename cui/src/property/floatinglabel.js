@@ -64,7 +64,7 @@ const InputControl = (props) => {
     };
 
     return (
-        <div className="row">
+        <div className={model.readonly ? "row readonly": "row"}>
             <div className="col-12 col-lg-6 mb-1 mb-lg-0">
                 <div className="input-group">
                     <form className="form-floating">
