@@ -61,7 +61,7 @@ const NxNSwitch = (props) => {
 
     const onFetchSuccess = (result) => {
         setModel(result);
-        //setupTimeouts();
+        setupTimeouts();
     };
 
     const onFetchFailure = (error) => {
@@ -73,7 +73,7 @@ const NxNSwitch = (props) => {
         return () => {
             clearTimeout(timerIdRef.current);
         };
-    });
+    }, []);
 
     return (
         <>

@@ -36,17 +36,20 @@ const ChannelPanel = (props) => {
     const timerIdRef = useRef(null);
     //const [isPollingEnabled, setIsPollingEnabled] = useState(true);
     const [model, setModel] = useState(props.model);
+    const [count, setCount] = useState(0);
 
     const { t } = useTranslation();
 
     const setupTimeouts = () => {
         timerIdRef.current = setTimeout(() => {
+            setCount((count) => count + 1);
             getData(url, onFetchSuccess, onFetchFailure);
         }, 1000);
     };
 
     const onFetchSuccess = (result) => {
         setModel(result);
+        setupTimeouts();
     };
 
     const onFetchFailure = (error) => {
@@ -82,10 +85,11 @@ const ChannelPanel = (props) => {
         return () => {
             clearTimeout(timerIdRef.current);
         };
-    });
+    }, []);
 
     return (
         <div className="card" id={id}>
+            <h1>I've rendered {count} times!</h1>
             <div className="card-header bg-info">
                 <strong>CHANNEL {props.channel}</strong>
             </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import ChannelGrid from './xchannel';
 import NxNSwitch from './templates/nxnswitch';
+import POL1201 from './templates/pol1201';
 
 function Bladepage(props) {
   const [error, setError] = useState(null);
@@ -52,11 +53,21 @@ function Bladepage(props) {
           </>
         );
       }
-    } else if (bladeDate.model.includes("BERT-1102") || bladeDate.model.includes("OSA")) {
+    } else if (bladeDate.model.includes("BERT-1102")) {
       return (
         <>
           <p>{JSON.stringify(bladeDate)}</p>
         </>
+      );
+    } else if (bladeDate.model.includes("OSA")) {
+      return (
+        <>
+          <p>{JSON.stringify(bladeDate)}</p>
+        </>
+      );
+    } else if (bladeDate.model.includes("POL-1201")) {
+      return (
+        <POL1201 chassis={props.chassis} slot={props.slot} title={bladeDate.model} model={bladeDate.channels[0]} />
       );
     } else {
       return (

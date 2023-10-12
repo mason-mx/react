@@ -79,3 +79,22 @@ $cswitch-dot-width-margin: 0.2em;
          transform: scale(1)
     }
 }
+
+.btn-selected {
+    border-radius: 25px !important;
+    border: solid 1px #381460 !important;
+    background-color: white !important;
+    color: black !important;
+}
+
+.btn-deselected {
+    border: solid 1px #666666 !important;
+    background-color: #e6e6e6 !important;
+    color: #666666 !important;
+}
+
+.property-control {
+    color: black;
+    height: 74px !important;
+    padding: 12px 4px 12px 4px !important;
+}
