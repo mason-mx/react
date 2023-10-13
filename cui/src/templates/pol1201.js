@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react"
+import InputGroupControl from '../property/inputgroup';
 
 import { useTranslation } from "react-i18next";
 import {getData, putData} from '../fetch'
@@ -6,7 +7,6 @@ import {getData, putData} from '../fetch'
 import Plot from 'react-plotly.js';
 
 import "../controls.scss";
-import { XCircle } from 'react-bootstrap-icons';
 
 const POL1201 = (props) => {
     //const id = "slot_" + props.slot + "_channel_" + props.channel;
@@ -17,6 +17,7 @@ const POL1201 = (props) => {
     const [model, setModel] = useState(props.model);
     const [theta, setTheta] = useState(0.3);
     const [phi, setPhi] = useState(0.2);
+    const [mode, setMode] = useState(0);
     const [count, setCount] = useState(0);
     
     const [layout, setLayout] = useState(
@@ -66,6 +67,19 @@ const POL1201 = (props) => {
             // autosize: true,
             width: 624,
             height: 540
+        }
+    );
+
+    const [sphereGraphConfig, setSphereGraphConfig] = useState(
+        {
+            'showLink': false,
+            'displaylogo': false,
+            'scrollZoom': false,
+            'modeBarButtonsToRemove':
+            [
+                'sendDataToCloud', 'zoom3d', 'pan3d', 'resetCameraDefault3d', 'orbitRotation', 'tableRotation', 'toggleHover', 'hoverClosest3d'
+            ],
+            editable: false
         }
     );
 
@@ -426,29 +440,7 @@ const POL1201 = (props) => {
             </div>
             <div className="row">
                 <div className="col-2 p-0">
-                    <div className="row m-0 cs-inputCtrl-disabled property-control" id="wavelength_inputCtrl" style={{pointerEvents: 'none', opacity: '0.5'}}>
-                        <div className="input-group">
-                            <div className="input-group-prepend">
-                                <button className="btn btn-outline-secondary" id="wavelength_submit" style={{display: 'none'}}>
-                                    <i className="icon-Tick"></i>
-                                </button>
-                                <button className="btn btn-outline-secondary" id="wavelength_cancel" style={{display: 'none'}}>
-                                    <i className="icon-Cross"></i>
-                                </button>
-                                <span className="input-group-text">Wavelength</span>
-                            </div>
-                            <input type="text" className="form-control" id="wavelength_input" key="wavelength" placeholder="1260" min="1260" max="1360" />
-                            <div className="input-group-append">
-                                <span className="input-group-text">nm</span>
-                            </div>
-                        </div>
-                        <div className="container" style={{display: 'none'}}>
-                            <div className="row m-0 w-100 h-100 property_label d-flex justify-content-between">
-                                <div className="property-key my-auto">Wavelength</div>
-                                <div className="property-value my-auto" id="wavelength_val">1260 nm</div>
-                            </div>
-                        </div>
-                    </div>
+                    <InputGroupControl chassis={props.chassis} slot={props.slot} channel={1} label={t("wavelength")} attr={"wavelength"} model={model.wavelength}/>
                     <div className="row m-0 border border-warning property-control">
                         <div className="col-9 m-auto" id="report_state_val">Scan Optimize</div>
                         <div className="col-3 m-auto"><img src="./img/spinner.gif" id="report_state_img" /></div>
@@ -478,6 +470,7 @@ const POL1201 = (props) => {
                                 <Plot
                                     data={sphere_data}
                                     layout={layout}
+                                    config={sphereGraphConfig}
                                 />
                             </div>
                         </div>

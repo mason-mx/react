@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 
 const SelectControl = (props) => {
     const [model, setModel] = useState(props.model);
-    //const [curValue, setCurrentValue] = useState(model.set);
 
     const options = model.options.map((opt, index) =>
       <option value={opt} key={index}>{opt}</option>
@@ -10,11 +9,13 @@ const SelectControl = (props) => {
 
     useEffect(() => {
         setModel(props.model);
-        //setCurrentValue(model.set);
     }, [props]);
 
     const onChange = (evt) => {
-        props.onSubmit(evt.target.value);
+        if(typeof props.onSubmit === 'function')
+        {
+            props.onSubmit(evt.target.value);
+        }
     };
 
     return (

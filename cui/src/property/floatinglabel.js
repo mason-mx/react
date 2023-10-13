@@ -59,7 +59,10 @@ const InputControl = (props) => {
     };
 
     const onSet = (value) => {
-        props.onSubmit(value);
+        if(typeof props.onSubmit === 'function')
+        {
+            props.onSubmit(value);
+        }
         setOnEdit(false);
     };
 
