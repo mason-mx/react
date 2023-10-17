@@ -61,12 +61,7 @@ const POL1201 = (props) => {
                 r: 0,
                 b: 0,
                 t: 0
-            },
-            // responsive: true,
-            // useResizeHandler: true,
-            // autosize: true,
-            width: 624,
-            height: 540
+            }
         }
     );
 
@@ -81,6 +76,19 @@ const POL1201 = (props) => {
             ],
             editable: false
         }
+    );
+
+    const [graphData, setGraphData] = useState(
+        [
+            {
+                x: [1, 2, 3],
+                y: [2, 6, 3],
+                type: 'scatter',
+                mode: 'lines+markers',
+                marker: {color: 'red'},
+            },
+            {type: 'bar', x: [1, 2, 3], y: [2, 5, 3]}
+        ]
     );
 
     const makeInterval = (startValue, stopValue, numPoints) => {
@@ -471,8 +479,18 @@ const POL1201 = (props) => {
                                     data={sphere_data}
                                     layout={layout}
                                     config={sphereGraphConfig}
+                                    useResizeHandler={true}
+                                    style={{width: "100%", height: "100%"}}
                                 />
                             </div>
+                        </div>
+                        <div className="col-6 p-0 bg-info">
+                            <Plot
+                                data={graphData}
+                                layout={ {title: 'A Fancy Plot'} }
+                                useResizeHandler={true}
+                                style={{width: "100%", height: "100%"}}
+                            />
                         </div>
                     </div>
                 </div>

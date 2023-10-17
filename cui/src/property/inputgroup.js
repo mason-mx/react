@@ -15,12 +15,9 @@ const InputGroupControl = (props) => {
     // useEffect(() => {
     //     if(!onEdit)
     //     {
-    //         setModel(props.model);
-    //         var display = model.set;
-    //         setValue(display);
-    //         setValid("form-control");
+    //         setDisplay(model.set);
     //     }
-    // }, [props, model.set, onEdit]);
+    // }, [model.set]);
 
     const onInputChange = (evt) => {
         setOnEdit(true);
