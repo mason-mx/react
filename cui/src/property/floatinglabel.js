@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { getStepsizebyValues } from "../util"
 
+import { PlusLg, DashLg } from 'react-bootstrap-icons';
+
 const FInputControl = (props) => {
     const [model, setModel] = useState(props.model);
     const display = model.unit === undefined ? model.set : model.set + " " + model.unit;
@@ -68,20 +70,16 @@ const FInputControl = (props) => {
 
     return (
         <div className={model.readonly ? "row readonly": "row"}>
-            <div className="col-12 col-lg-6 mb-1 mb-lg-0">
+            <div className="col-12 mb-1 mb-lg-0">
                 <div className="input-group">
                     <form className="form-floating">
                         <input type="text" className={valid} id={props.id} placeholder={display} value={value} onChange={onInputChange} /*onBlur={onInputBlur}*//>
                         <label htmlFor={props.id}>{label}</label>
                     </form>
-                    <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(value))}}>Set</button>
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(value)}}>Set</button>
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue + step))}}><PlusLg/></button>
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue - step))}}><DashLg/></button>
                 </div>
-            </div>
-            <div className="col-12 col-lg-6 btn-group" role="group">
-                <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue + step))}}>+</button>
-                <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue - step))}}>-</button>
-                <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet("min")}}>Min</button>
-                <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet("max")}}>Max</button>
             </div>
         </div>
     )

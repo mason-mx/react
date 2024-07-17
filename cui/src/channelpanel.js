@@ -10,7 +10,7 @@ function populateSetProperty(chassis, slot, channel, label, key, value, index) {
     if('set' in value)
     {
         return (
-            <div className="col-12 my-1 py-1 settable-property" key={index}>
+            <div className="col-12 col-xl-6 my-1 py-1 settable-property shadow-sm" key={index}>
                 <SettableControl chassis={chassis} slot={slot} channel={channel} label={label} attr={key} model={value}/>
             </div>
         )
