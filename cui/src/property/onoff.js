@@ -1,11 +1,12 @@
-import React, { useState, useEffect  } from "react"
+import React, { useState, useEffect, useRef } from "react"
 
 const SwitchControl = (props) => {
     const id = "slot_" + props.slot + "_channel_" + props.channel + "_" + props.label;
     const [model, setModel] = useState(props.model);
     const [checked, setChecked] = useState(model.set);
+    const inputRef = useRef(null);
     const onSwitchChange = (evt) => {
-        setChecked(evt.target.checked);
+        inputRef.current.indeterminate = true;
         if(typeof props.onSubmit === 'function')
         {
             props.onSubmit(evt.target.checked);
@@ -14,8 +15,12 @@ const SwitchControl = (props) => {
 
     useEffect(() => {
         setModel(props.model);
+    }, [props]);
+
+    useEffect(() => {
         setChecked(model.set);
-    }, [props, model.set]);
+        inputRef.current.indeterminate = false;
+    }, [model.set]);
 
     return (
         <div className="h-100 p-3">
@@ -25,7 +30,7 @@ const SwitchControl = (props) => {
                 </div>
                 <div>
                     <label className="cswitch">
-                        <input type="checkbox" id={id} checked={checked} onChange={onSwitchChange}/>
+                        <input type="checkbox" id={id} checked={checked} ref={inputRef} onChange={onSwitchChange}/>
                         <span className="slider"></span>
                     </label>
                 </div>

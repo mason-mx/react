@@ -168,7 +168,7 @@ function App() {
       <SideBar ref={sidebar_comp}/>
       <StackingSnackBar ref={toast_comp}/>
       <CFooter ref={footer_comp}/>
-      {/* <CSplash/> */}
+      <CSplash/>
     </>
   );
 }

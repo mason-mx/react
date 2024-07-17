@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { getStepsizebyValues } from "../util"
 
-const InputControl = (props) => {
+const FInputControl = (props) => {
     const [model, setModel] = useState(props.model);
     const display = model.unit === undefined ? model.set : model.set + " " + model.unit;
     const [value, setValue] = useState(display);
@@ -87,4 +87,4 @@ const InputControl = (props) => {
     )
 }
 
-export default InputControl
+export default FInputControl

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 
-const FSelectControl = (props) => {
+const SelectControl = (props) => {
     const [model, setModel] = useState(props.model);
 
     const options = model.options.map((opt, index) =>
@@ -19,13 +19,10 @@ const FSelectControl = (props) => {
     };
 
     return (
-        <div className="form-floating">
-            <select className="form-select" id={props.id} onChange={onChange} value={model.set}>
-                {options}
-            </select>
-            <label htmlFor={props.id}>{props.label}</label>
-        </div>
+        <select className="form-select" id={props.id} onChange={onChange} value={model.set}>
+            {options}
+        </select>
     )
 }
 
-export default FSelectControl
+export default SelectControl

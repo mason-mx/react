@@ -29,6 +29,14 @@ $cswitch-dot-width-margin: 0.2em;
             left: unset;
             right: $cswitch-dot-width-margin;
         }
+
+        &:indeterminate + .slider {
+            background-color: GoldenRod;		/* GoldenRod */
+            border-color: GoldenRod;			/* GoldenRod */
+            &:before {
+                width: calc(100% - 2 * $cswitch-dot-width-margin);
+            }
+        }
     }
 
     .slider {

@@ -89,7 +89,7 @@ const ChannelPanel = (props) => {
 
     return (
         <div className="card" id={id}>
-            <h1>I've rendered {count} times!</h1>
+            {/* <h1>I've rendered {count} times!</h1> */}
             <div className="card-header bg-info">
                 <strong>CHANNEL {props.channel}</strong>
             </div>

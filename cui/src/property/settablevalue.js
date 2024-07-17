@@ -1,7 +1,8 @@
 import React from "react"
 import SwitchControl from "./onoff";
-import InputControl from './floatinglabel';
-import SelectControl from './floatingselects';
+import FInputControl from './floatinglabel';
+import SelectControl from './select';
+import FSelectControl from './floatingselects';
 
 import {putData} from '../fetch'
 
@@ -28,11 +29,11 @@ const SettableControl = (props) => {
         }
         if('options' in model)
         {
-            return <SelectControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
+            return <FSelectControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
         }
         if('min' in model && 'max' in model)
         {
-            return <InputControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
+            return <FInputControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
         }
         return (
             <>
