@@ -8,7 +8,7 @@ const PlainControl = (props) => {
     try {
         return (
             <>
-                <span>{props.label}: </span><span className="display-6" id={id + "_act"}><em>{model.act}</em></span><span> </span><span>{model.unit}</span>
+                <span>{props.label}: </span><span className="fs-5" id={id + "_act"}><em>{model.act}</em></span><span> </span><span>{model.unit}</span>
             </>
         )
         if('act' in model && 'set' in model)

@@ -28,9 +28,12 @@ const ChannelGrid = (props) => {
               <button className="btn btn-primary" onClick={(e) => adjust_comp.current.fillChannel(0)}>Edit</button>
             </form>
           </div> */}
-          <div className='row'>
-            <h3>{props.title}</h3>
-          </div>
+          <nav aria-label="breadcrumb">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">Chassis{props.chassis}</li>
+              <li className="breadcrumb-item active">Slot{props.slot}:<strong>{props.title}</strong></li>
+            </ol>
+          </nav>
           <div className='row'>
             {channels}
           </div>

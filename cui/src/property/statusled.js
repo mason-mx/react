@@ -11,7 +11,7 @@ const LedControl = (props) => {
             <div className="row">
                 <div className="col-12 mb-1 mb-lg-0 d-flex justify-content-between">
                     <div>{props.label}</div>
-                    <div className={color}><CircleFill/></div>
+                    <div className={"d-flex align-items-center " + color}><CircleFill/></div>
                 </div>
             </div>
         )
