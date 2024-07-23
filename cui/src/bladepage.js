@@ -3,6 +3,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import ChannelGrid from './xchannel';
 import NxNSwitch from './templates/nxnswitch';
 import POL1201 from './templates/pol1201';
+import PAM4 from './templates/pam4';
 
 function Bladepage(props) {
   const [error, setError] = useState(null);
@@ -61,9 +62,7 @@ function Bladepage(props) {
       );
     } else if (bladeDate.model.includes("OSA")) {
       return (
-        <>
-          <p>{JSON.stringify(bladeDate)}</p>
-        </>
+        <PAM4 chassis={props.chassis} slot={props.slot} title={bladeDate.model} model={bladeDate.channels[0]} />
       );
     } else if (bladeDate.model.includes("POL-1201")) {
       return (
