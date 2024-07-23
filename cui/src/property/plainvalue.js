@@ -6,16 +6,16 @@ const PlainControl = (props) => {
     const id = "slot_" + props.slot + "_channel_" + props.channel + "_" + props.attr;
     const model = props.model;
     try {
-        return (
-            <>
-                <span>{props.label}: </span><span className="fs-5" id={id + "_act"}><em>{model.act}</em></span><span> </span><span>{model.unit}</span>
-            </>
-        )
+        // return (
+        //     <>
+        //         <span>{props.label}: </span><span className="fs-5" id={id + "_act"}><em>{model.act}</em></span><span> </span><span>{model.unit}</span>
+        //     </>
+        // )
         if('act' in model && 'set' in model)
         {
             return (
                 <>
-                    <span>{props.label}: </span><span id={id + "_act"}>{model.act}</span><span> </span><span>{model.unit}</span>
+                    <span>{props.label}: </span><span id={id + "_act"} className="text-info fst-italic">{model.act}</span>
                     <span> | </span><span id={id + "_set"}>{model.set}</span><span> </span><span>{model.unit}</span>
                 </>
             )
@@ -24,7 +24,7 @@ const PlainControl = (props) => {
         {
             return (
                 <>
-                    <span>{props.label}: </span><span id={id + "_act"}>{model.act}</span><span> </span><span>{model.unit}</span>
+                    <span>{props.label}: </span><span id={id + "_act"} className="text-info fst-italic">{model.act}</span><span> </span><span>{model.unit}</span>
                 </>
             )
         }

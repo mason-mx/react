@@ -414,14 +414,14 @@ const POL1201 = (props) => {
 
     const setupTimeouts = () => {
         timerIdRef.current = setTimeout(() => {
-            setCount((count) => count + 1);
+            //setCount((count) => count + 1);
             getData(url, onFetchSuccess, onFetchFailure);
         }, 1000);
     };
 
     const onFetchSuccess = (result) => {
         setModel(result);
-        setupTimeouts();
+        //setupTimeouts();
     };
 
     const onFetchFailure = (error) => {
@@ -434,7 +434,7 @@ const POL1201 = (props) => {
         return () => {
             clearTimeout(timerIdRef.current);
         };
-    }, []);
+    });
 
     useEffect(() => {
         setSphereData(composeSphereData().concat(composePointData(theta, phi)));
@@ -451,7 +451,7 @@ const POL1201 = (props) => {
                     <InputGroupControl chassis={props.chassis} slot={props.slot} channel={1} label={t("wavelength")} attr={"wavelength"} model={model.wavelength}/>
                     <div className="row m-0 border border-warning property-control">
                         <div className="col-9 m-auto" id="report_state_val">Scan Optimize</div>
-                        <div className="col-3 m-auto"><img src="./img/spinner.gif" id="report_state_img" /></div>
+                        <div className="col-3 m-auto"><img src="./img/spinner.gif" id="report_state_img" alt="" /></div>
                     </div>
                     <div className="row m-0 header-control">
                         <div className="col-12 px-2 d-flex align-itmes-center section-header">

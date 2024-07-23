@@ -7,7 +7,7 @@ const ChannelGrid = (props) => {
     //const id = "slot_" + props.slot + "_channel_" + props.channel;
     const model = props.model;
 
-    //const adjust_comp = useRef(null);
+    const adjust_comp = useRef(null);
 
     var channels = [];
     for (var i = 0; i < model.length; i++)
@@ -15,7 +15,7 @@ const ChannelGrid = (props) => {
       channels.push(
         <div className='col-12 col-md-6 p-3' key={i}>
           <ChannelPanel chassis={props.chassis} slot={props.slot} channel={i+1} model={model[i]} />
-          {/* <ChannelPanel slot={props.slot} channel={i+1} model={model[i]} updatePopup={(channelNumber) => {
+          {/* <ChannelPanel chassis={props.chassis} slot={props.slot} channel={i+1} model={model[i]} updatePopup={(channelNumber) => {
             adjust_comp.current.fillChannel(channelNumber);
           }}/> */}
         </div>

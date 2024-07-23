@@ -30,30 +30,39 @@ function populateActProperty(chassis, slot, channel, label, key, value, index) {
     return;
 }
 
+function populateActSetProperty(chassis, slot, channel, label, key, value, index) {
+    if('act' in value || 'set' in value)
+    {
+        return (
+            <div className="col-12 col-xl-6 my-1 py-1" key={index}>
+                <PlainControl chassis={chassis} slot={slot} channel={channel} label={label} attr={key} model={value}/>
+            </div>
+        )
+    }
+    return;
+}
+
 const ChannelPanel = (props) => {
     const id = "slot_" + props.slot + "_channel_" + props.channel;
     const url = "/instrument/chassis" +  + props.chassis + "/blade" + props.slot + "/channel" + props.channel;
-    const timerIdRef = useRef(null);
+    const timerIdRef = useRef();
     //const [isPollingEnabled, setIsPollingEnabled] = useState(true);
     const [model, setModel] = useState(props.model);
-    const [count, setCount] = useState(0);
 
     const { t } = useTranslation();
 
     const setupTimeouts = () => {
         timerIdRef.current = setTimeout(() => {
-            setCount((count) => count + 1);
             getData(url, onFetchSuccess, onFetchFailure);
         }, 1000);
     };
 
     const onFetchSuccess = (result) => {
         setModel(result);
-        setupTimeouts();
     };
 
     const onFetchFailure = (error) => {
-        clearTimeout(timerIdRef.current);
+        //clearTimeout(timerIdRef.current);
     };
 
     // useEffect(() => {
@@ -85,7 +94,7 @@ const ChannelPanel = (props) => {
         return () => {
             clearTimeout(timerIdRef.current);
         };
-    }, []);
+    });
 
     return (
         <div className="card" id={id}>
@@ -94,7 +103,7 @@ const ChannelPanel = (props) => {
                 <strong>CHANNEL {props.channel}</strong>
             </div>
             <div className="card-body">
-                <div className="row bg-secondary bg-gradient bg-opacity-50">
+                <div className="row">
                     {Object.keys(model).map((key, index) => (
                         populateActProperty(props.chassis, props.slot, props.channel, t(key), key, model[key], index)
                     ))}
