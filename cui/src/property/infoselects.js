@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react"
 
+const default_model = {
+    info: [
+        "0:PRBS7",
+        "1:PRBS15",
+        "2:PRBS31"
+    ],
+    set: 1
+};
+
 const ISelectControl = (props) => {
-    const [model, setModel] = useState(props.model);
+    const [model, setModel] = useState(props.model === undefined ? default_model :  props.model);
 
     const options = model.info.map((opt, index) => {
             var dic = opt.split(':');
@@ -10,8 +19,8 @@ const ISelectControl = (props) => {
     );
 
     useEffect(() => {
-        setModel(props.model);
-    }, [props]);
+        setModel(props.model === undefined ? default_model :  props.model);
+    }, [props.model]);
 
     const onChange = (evt) => {
         if(typeof props.onSubmit === 'function')

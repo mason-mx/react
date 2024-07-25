@@ -1,12 +1,17 @@
 $cswitch-width: 4.0em;
 $cswitch-dot-width-margin: 0.2em;
+$property-row-border-color: #6c757d;
 
 .settable-property {
     //background-color: lavender;
     //border: 1px solid lavender;
     .input-group input {
-        border-color: #6c757d;
+        border-color: $property-row-border-color;
     }
+}
+
+.form-floating>.form-select {
+    border-color: $property-row-border-color;
 }
 
 .readonly {

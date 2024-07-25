@@ -7,7 +7,7 @@ const default_model = {
     set: 1,
     min: -5,
     max: 10,
-    unit: 'X'
+    unit: 'U'
 };
 
 const FInputControl = (props) => {

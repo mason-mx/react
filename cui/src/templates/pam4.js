@@ -27,6 +27,17 @@ const PAM4 = (props) => {
     }
     return (
         <>
+            <Row>
+                <div className="col-12 col-lg-6 col-xl-4 my-1 py-1 settable-property shadow-sm">
+                    <FInputControl label="Amplitude"/>
+                </div>
+                <div className="col-12 col-lg-6 col-xl-4 my-1 py-1 settable-property shadow-sm">
+                    <ISelectControl label="Info select"/>
+                </div>
+                <div className="col-12 col-lg-6 col-xl-4 my-1 py-1 settable-property shadow-sm">
+                    <FSelectControl label="Opt select"/>
+                </div>
+            </Row>
             <Accordion defaultActiveKey={['0']} alwaysOpen>
                 <Accordion.Item eventKey="0">
                 <Accordion.Header>PPG</Accordion.Header>
@@ -46,28 +57,6 @@ const PAM4 = (props) => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Eye Heights</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                            </tr>
-                            <tr>
-                                <td>Eye Heights</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                            </tr>
                             <tr>
                                 <td>Eye Heights</td>
                                 <td>Mark</td>
@@ -146,28 +135,6 @@ const PAM4 = (props) => {
                                 <td>Otto</td>
                             </tr>
                             <tr>
-                                <td>EQ boost</td>
-                                <td>0</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                            </tr>
-                            <tr>
-                                <td>Invert</td>
-                                <td>ON</td>
-                                <td>OFF</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                            </tr>
-                            <tr>
                                 <td>Result Display</td>
                                 <td>Accumulated</td>
                                 <td>Instantaneous</td>
@@ -201,47 +168,37 @@ const PAM4 = (props) => {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <Container>
-                        <Row>
-                            <Col xs={12} md={6}>
-                                {
-                                    section === "ED" ? (
-                                        <Form>
-                                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                <FInputControl label="Amplitude"/>
-                                            </Form.Group>
-                                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                                                <FInputControl label="Amplitude"/>
-                                            </Form.Group>
-                                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-                                                <FInputControl label="Amplitude"/>
-                                            </Form.Group>
-                                        </Form>
-                                    ) : (
-                                        <Form>
-                                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
-                                                <FInputControl label="Pattern"/>
-                                            </Form.Group>
-                                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
-                                                <FInputControl label="Pattern"/>
-                                            </Form.Group>
-                                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput6">
-                                                <FInputControl label="Pattern"/>
-                                            </Form.Group>
-                                        </Form>
-                                    )
-                                }
-                            </Col>
-                            <Col xs={12} md={6}>
-                                .col-xs-12 .col-md-6
-                            </Col>
-                        </Row>
+                        {
+                            section === "ED" ? (
+                                <Row>
+                                    <div className="col-12 col-lg-6 col-xl-4 my-1 py-1 settable-property shadow-sm">
+                                        <FInputControl label="Amplitude"/>
+                                    </div>
+                                    <div className="col-12 col-lg-6 col-xl-4 my-1 py-1 settable-property shadow-sm">
+                                        <ISelectControl label="Info select"/>
+                                    </div>
+                                    <div className="col-12 col-lg-6 col-xl-4 my-1 py-1 settable-property shadow-sm">
+                                        <FSelectControl label="Opt select"/>
+                                    </div>
+                                </Row>
+                            ) : (
+                                <Row>
+                                    <div className="col-12 col-lg-6 col-xl-4 my-1 py-1 settable-property shadow-sm">
+                                        <FInputControl label="Pattern"/>
+                                    </div>
+                                    <div className="col-12 col-lg-6 col-xl-4 my-1 py-1 settable-property shadow-sm">
+                                        <ISelectControl label="Info select"/>
+                                    </div>
+                                    <div className="col-12 col-lg-6 col-xl-4 my-1 py-1 settable-property shadow-sm">
+                                        <FSelectControl label="Opt select"/>
+                                    </div>
+                                </Row>
+                            )
+                        }
                         <Row>
                             <Button>Submit</Button>
                         </Row>
                     </Container>
-                    {/* <FSelectControl label="ED Pattern"/>
-                    <ISelectControl label="Display"/> */}
-                    {/* <SwitchControl label="ED Invert"/> */}
                 </Offcanvas.Body>
             </Offcanvas>
         </>
