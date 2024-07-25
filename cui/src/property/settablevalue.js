@@ -26,7 +26,7 @@ const SettableControl = (props) => {
     try {
         if(isBoolean(model.set))
         {
-            return <SwitchControl label={props.label} model={model} onSubmit={onSubmit}/>;
+            return <SwitchControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
         }
         if('options' in model)
         {

@@ -3,8 +3,15 @@ import { getStepsizebyValues } from "../util"
 
 import { PlusLg, DashLg } from 'react-bootstrap-icons';
 
+const default_model = {
+    set: 1,
+    min: -5,
+    max: 10,
+    unit: 'X'
+};
+
 const FInputControl = (props) => {
-    const [model, setModel] = useState(props.model);
+    const [model, setModel] = useState(props.model === undefined ? default_model :  props.model);
     const display = model.unit === undefined ? model.set : model.set + " " + model.unit;
     const [value, setValue] = useState(display);
     const [curValue, setCurrentValue] = useState(model.set);
@@ -17,14 +24,16 @@ const FInputControl = (props) => {
     useEffect(() => {
         if(!onEdit)
         {
-            setModel(props.model);
             var display = model.unit === undefined ? model.set : model.set + " " + model.unit;
             setValue(display);
-            setCurrentValue(model.set);
-            setLabel(props.label);
             setValid("form-control");
         }
-    }, [props, model.set, model.unit, onEdit]);
+    }, [model.set, model.unit, onEdit]);
+
+    useEffect(() => {
+        setModel(props.model === undefined ? default_model :  props.model);
+        setCurrentValue(model.set);
+    }, [props.model]);
 
     const onInputChange = (evt) => {
         setOnEdit(true);
