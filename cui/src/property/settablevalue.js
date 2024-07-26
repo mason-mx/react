@@ -36,7 +36,7 @@ const SettableControl = (props) => {
         {
             return <ISelectControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
         }
-        if('min' in model && 'max' in model)
+        if('min' in model && 'max' in model && 'set' in model)
         {
             return <FInputControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
         }

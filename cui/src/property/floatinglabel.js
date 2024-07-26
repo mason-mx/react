@@ -7,6 +7,7 @@ const default_model = {
     set: 1,
     min: -5,
     max: 10,
+    step: 0.01,
     unit: 'U'
 };
 
@@ -19,7 +20,8 @@ const FInputControl = (props) => {
     const [label, setLabel] = useState(props.label);
     const [onEdit, setOnEdit] = useState(false);
 
-    const step = getStepsizebyValues(model.min, model.max, model.set);
+    const step = ((model.step === undefined) ? getStepsizebyValues(model.min, model.max, model.set) : model.step);
+    const accept2submit = (typeof props.onSubmit === 'function');
 
     useEffect(() => {
         if(!onEdit)
@@ -28,11 +30,11 @@ const FInputControl = (props) => {
             setValue(display);
             setValid("form-control");
         }
+        setCurrentValue(model.set);
     }, [model.set, model.unit, onEdit]);
 
     useEffect(() => {
         setModel(props.model === undefined ? default_model :  props.model);
-        setCurrentValue(model.set);
     }, [props.model]);
 
     const onInputChange = (evt) => {
@@ -73,6 +75,10 @@ const FInputControl = (props) => {
         if(typeof props.onSubmit === 'function')
         {
             props.onSubmit(value);
+        } else {
+            var display = model.unit === undefined ? value : value + " " + model.unit;
+            setValue(display);
+            setCurrentValue(value);
         }
         setOnEdit(false);
     };
@@ -85,7 +91,9 @@ const FInputControl = (props) => {
                         <input type="text" className={valid} id={props.id} placeholder={display} value={value} onChange={onInputChange} /*onBlur={onInputBlur}*//>
                         <label htmlFor={props.id}>{label}</label>
                     </form>
-                    <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(value)}}>Set</button>
+                    {
+                        accept2submit ? <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(value)}}>Set</button> : null
+                    }
                     <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue + step))}}><PlusLg/></button>
                     <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue - step))}}><DashLg/></button>
                 </div>
