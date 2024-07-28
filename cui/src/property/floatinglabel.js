@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { getStepsizebyValues } from "../util"
 
-import { PlusLg, DashLg } from 'react-bootstrap-icons';
+import { ArrowLeftRight, PlusLg, DashLg } from 'react-bootstrap-icons';
 
 const default_model = {
     set: 1,
@@ -15,6 +15,7 @@ const FInputControl = (props) => {
     const [model, setModel] = useState(props.model === undefined ? default_model :  props.model);
     const display = model.unit === undefined ? model.set : model.set + " " + model.unit;
     const [value, setValue] = useState(display);
+    const [unit, setUnit] = useState(model.unit);
     const [curValue, setCurrentValue] = useState(model.set);
     const [valid, setValid] = useState("form-control");
     const [label, setLabel] = useState(props.label);
@@ -96,6 +97,11 @@ const FInputControl = (props) => {
                     }
                     <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue + step))}}><PlusLg/></button>
                     <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue - step))}}><DashLg/></button>
+                    {
+                        (unit === 'dBm' || unit === 'mW') ?
+                            <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue - step))}}><ArrowLeftRight/></button>
+                        : null
+                    }
                 </div>
             </div>
         </div>
