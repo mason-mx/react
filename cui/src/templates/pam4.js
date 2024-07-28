@@ -37,6 +37,9 @@ const PAM4 = (props) => {
                 <div className="col-12 col-lg-6 col-xl-4 my-1 py-1 settable-property shadow-sm">
                     <FSelectControl label="Opt select"/>
                 </div>
+                <div className="col-12 col-lg-6 col-xl-4 my-1 py-1 settable-property shadow-sm">
+                    <SwitchControl label="Switch"/>
+                </div>
             </Row>
             <Accordion defaultActiveKey={['0']} alwaysOpen>
                 <Accordion.Item eventKey="0">

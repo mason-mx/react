@@ -10,6 +10,11 @@ $property-row-border-color: #6c757d;
     }
 }
 
+.switch-property {
+    border: 1px solid $property-row-border-color;
+    border-radius: var(--bs-border-radius);
+}
+
 .form-floating>.form-select {
     border-color: $property-row-border-color;
 }
