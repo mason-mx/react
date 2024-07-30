@@ -65,6 +65,21 @@ const FInputControl = (props) => {
     const handleSubmit = (evt) => {
         evt.preventDefault();
     };
+    const handleKeyDown = (evt) => {
+        if (evt.key === 'Enter') {
+            if( valid === 'form-control') {
+                if(typeof props.onSubmit === 'function')
+                {
+                    props.onSubmit(value);
+                } else {
+                    var display = model.unit === undefined ? value : value + " " + model.unit;
+                    setValue(display);
+                    setCurrentValue(value);
+                }
+                setOnEdit(false);
+            }
+        }
+    };
     const onInputBlur = (evt) => {
         if(evt.target.value === "")
         {
@@ -92,7 +107,7 @@ const FInputControl = (props) => {
             <div className="col-12 mb-1 mb-lg-0">
                 <div className="input-group">
                     <form className="form-floating" onSubmit={handleSubmit}>
-                        <input type="text" className={valid} id={props.id} placeholder={display} value={value} onChange={onInputChange} /*onBlur={onInputBlur}*//>
+                        <input type="text" className={valid} id={props.id} placeholder={display} value={value} onChange={onInputChange} onKeyDown={handleKeyDown}/*onBlur={onInputBlur}*//>
                         <label htmlFor={props.id}>{label}</label>
                     </form>
                     {
