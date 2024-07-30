@@ -62,6 +62,9 @@ const FInputControl = (props) => {
         setValue(evt.target.value);
         setLabel(props.label + ": " + display);
     };
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+    };
     const onInputBlur = (evt) => {
         if(evt.target.value === "")
         {
@@ -88,7 +91,7 @@ const FInputControl = (props) => {
         <div className={model.readonly ? "row readonly": "row"}>
             <div className="col-12 mb-1 mb-lg-0">
                 <div className="input-group">
-                    <form className="form-floating">
+                    <form className="form-floating" onSubmit={handleSubmit}>
                         <input type="text" className={valid} id={props.id} placeholder={display} value={value} onChange={onInputChange} /*onBlur={onInputBlur}*//>
                         <label htmlFor={props.id}>{label}</label>
                     </form>
