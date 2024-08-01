@@ -13,7 +13,7 @@ const default_model = {
 
 const FInputControl = (props) => {
     const [model, setModel] = useState(props.model === undefined ? default_model :  props.model);
-    const display = model.unit === undefined ? model.set : model.set + " " + model.unit;
+    var display = model.unit === undefined ? model.set : model.set + " " + model.unit;
     const [value, setValue] = useState(display);
     const [unit, setUnit] = useState(model.unit);
     const [curValue, setCurrentValue] = useState(model.set);
@@ -27,7 +27,7 @@ const FInputControl = (props) => {
     useEffect(() => {
         if(!onEdit)
         {
-            var display = model.unit === undefined ? model.set : model.set + " " + model.unit;
+            display = model.unit === undefined ? model.set : model.set + " " + model.unit;
             setValue(display);
             setValid("form-control");
         }
@@ -67,12 +67,13 @@ const FInputControl = (props) => {
     };
     const handleKeyDown = (evt) => {
         if (evt.key === 'Enter') {
-            if( valid === 'form-control') {
+            if(valid === 'form-control') {
                 if(typeof props.onSubmit === 'function')
                 {
                     props.onSubmit(value);
+                    setLabel(props.label);
                 } else {
-                    var display = model.unit === undefined ? value : value + " " + model.unit;
+                    display = model.unit === undefined ? value : value + " " + model.unit;
                     setValue(display);
                     setCurrentValue(value);
                 }
@@ -94,10 +95,7 @@ const FInputControl = (props) => {
         if(typeof props.onSubmit === 'function')
         {
             props.onSubmit(value);
-        } else {
-            var display = model.unit === undefined ? value : value + " " + model.unit;
-            setValue(display);
-            setCurrentValue(value);
+            setLabel(props.label);
         }
         setOnEdit(false);
     };
@@ -107,7 +105,7 @@ const FInputControl = (props) => {
             <div className="col-12 mb-1 mb-lg-0">
                 <div className="input-group">
                     <form className="form-floating" onSubmit={handleSubmit}>
-                        <input type="text" className={valid} id={props.id} placeholder={display} value={value} onChange={onInputChange} onKeyDown={handleKeyDown}/*onBlur={onInputBlur}*//>
+                        <input type="text" className={valid} id={props.id} value={value} onChange={onInputChange} onKeyDown={handleKeyDown}/*onBlur={onInputBlur}*//>
                         <label htmlFor={props.id}>{label}</label>
                     </form>
                     {

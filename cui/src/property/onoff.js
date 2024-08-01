@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react"
 
+import { LockFill, UnlockFill } from 'react-bootstrap-icons';
 const default_model = {
-    set: false
+    set: false,
+    safety: 0
 };
 
 const SwitchControl = (props) => {
@@ -27,10 +29,13 @@ const SwitchControl = (props) => {
     }, [model.set]);
 
     return (
-        <div className="h-100 p-3 switch-property">
+        <div className={model.safety === 1 ? "h-100 p-3 switch-property readonly": "h-100 p-3 switch-property"}>
             <div className="d-flex justify-content-between">
                 <div>
                     <span>{props.label}: </span><span>{model.set ? "ON":"OFF"}</span>
+                </div>
+                <div className="d-flex align-items-center">
+                    {model.safety === 1 ? <LockFill/>:<UnlockFill/>}
                 </div>
                 <div>
                     <label className="cswitch">
