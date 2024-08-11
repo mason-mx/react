@@ -14,10 +14,12 @@ const Instrument = forwardRef((props, ref) => {
   const [platform, setPlatform] = useState('PXIE');
   const [slot, setSlot] = useState(1);
   const [chassis, setChassis] = useState(0);
+  const [chassisIndex, setChassisIndex] = useState(0);
 
-  const clickBlade=(chassis, slot) => {
+  const clickBlade=(chassisIndex, chassis, slot) => {
     setSlot(slot);
     setChassis(chassis);
+    setChassisIndex(chassisIndex);
     setView('blade');
   }
 
@@ -72,14 +74,29 @@ const Instrument = forwardRef((props, ref) => {
         )
       } else if (view === 'blade') {
         return (
-          <Bladepage chassis={chassis} slot={slot}/>
+          <>
+            <nav aria-label="breadcrumb">
+              <ol className="breadcrumb">
+              <li className="breadcrumb-item">Chassis{chassis}</li>
+              <li className="breadcrumb-item active">Slot{slot}:<strong>{chassisData[chassisIndex].blades[slot].model}</strong></li>
+              </ol>
+            </nav>
+            <Bladepage chassis={chassis} slot={slot}/>
+          </>
         )
       } else {
-        return <h1>Current view is : {view}</h1>        
+        return <h1>Current view is : {view}</h1>
       }
     } else if (platform === 'MTRQ') {
       return (
-        <Bladepage chassis={0} slot={0}/>
+        <>
+          <nav aria-label="breadcrumb">
+            <ol className="breadcrumb">
+            <li className="breadcrumb-item active"><strong>{chassisData[0].blades[1].model}</strong></li>
+            </ol>
+          </nav>
+          <Bladepage chassis={0} slot={1}/>
+        </>
       )
     } else if (platform === 'EPIQ') {
       return <div>EPIQ</div>;

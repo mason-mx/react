@@ -26,16 +26,16 @@ class BladeRow extends Component {
 
   static contextType = ViewContext;
 
-  onClickBlade(chassis, slot, e) {
+  onClickBlade(chassisIndex, chassis, slot, e) {
     this.context.view = 'blade';
-    this.context.onChange(chassis, slot);
+    this.context.onChange(chassisIndex, chassis, slot);
   }
 
   render() {
     const blade = this.props.blade;
     const slot = this.props.slot;
     const model = (blade !== "None") ?
-      <a href="#" onClick={(e) => this.onClickBlade(this.props.chassis, slot, e)}>{blade.model}</a> :
+      <a href="#" onClick={(e) => this.onClickBlade(this.props.chassisIndex, this.props.chassis, slot, e)}>{blade.model}</a> :
       <span style={{color: 'red'}}> Empth Slot </span>;
     const serial = (blade !== "None") ?
       blade.serial : "";
@@ -82,6 +82,7 @@ class BladeTable extends Component {
           blade={blade}
           slot={slotId}
           chassis={this.props.chassis}
+          chassisIndex={this.props.chassisIndex}
           key={slotId}
         />
       );
@@ -183,6 +184,7 @@ class Chassis extends Component {
         <BladeTable
           blades={this.props.blades}
           chassis={this.props.chassis}
+          chassisIndex={this.props.chassisIndex}
           filterText={this.state.filterText}
           showEmptySlot={this.state.showEmptySlot}
         />
@@ -199,6 +201,7 @@ class PxiePage extends Component {
         <Chassis
           blades={this.props.chassis[i].blades}
           chassis={this.props.chassis[i].id}
+          chassisIndex={i}
           key={i}
         />);
     }

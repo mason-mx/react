@@ -442,10 +442,6 @@ const POL1201 = (props) => {
 
     return (
         <>
-            <div className='row'>
-                <h3>{props.title}</h3>
-                <h1>I've rendered {count} times!</h1>
-            </div>
             <div className="row">
                 <div className="col-2 p-0">
                     <InputGroupControl chassis={props.chassis} slot={props.slot} channel={1} label={t("wavelength")} attr={"wavelength"} model={model.wavelength}/>

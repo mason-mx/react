@@ -41,36 +41,39 @@ function Bladepage(props) {
     if("switch_type" in bladeDate)
     {
       try {
-        if("NxN" === bladeDate.channels[0].state.device_type)
+        if("NxN" === bladeDate.channels[0].switches.device_type)
         {
           return (
-            <NxNSwitch chassis={props.chassis} slot={props.slot} title={bladeDate.model} model={bladeDate.channels[0]} />
+            <NxNSwitch chassis={props.chassis} slot={props.slot} model={bladeDate.channels[0]} />
+          );
+        } else if("1xN" === bladeDate.channels[0].switches.device_type)
+        {
+          return (
+            <>1xn</>
           );
         }
       } catch (error) {
         return (
           <>
-            <h1>{props.chassis}|{props.slot}: {bladeDate.model}</h1>
+            405
           </>
         );
       }
     } else if (bladeDate.model.includes("BERT-1102")) {
       return (
-        <>
-          <p>{JSON.stringify(bladeDate)}</p>
-        </>
+        <p>{JSON.stringify(bladeDate)}</p>
       );
     } else if (bladeDate.model.includes("OSA")) {
       return (
-        <PAM4 chassis={props.chassis} slot={props.slot} title={bladeDate.model} model={bladeDate.channels[0]} />
+        <PAM4 chassis={props.chassis} slot={props.slot} model={bladeDate.channels[0]} />
       );
     } else if (bladeDate.model.includes("POL-1201")) {
       return (
-        <POL1201 chassis={props.chassis} slot={props.slot} title={bladeDate.model} model={bladeDate.channels[0]} />
+        <POL1201 chassis={props.chassis} slot={props.slot} model={bladeDate.channels[0]} />
       );
     } else {
       return (
-        <ChannelGrid chassis={props.chassis} slot={props.slot} title={bladeDate.model} model={bladeDate.channels}/>
+        <ChannelGrid chassis={props.chassis} slot={props.slot} model={bladeDate.channels}/>
       );
     }
   }

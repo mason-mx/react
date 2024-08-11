@@ -100,22 +100,27 @@ const FInputControl = (props) => {
         setOnEdit(false);
     };
 
+    const onConvert = (unit) => {
+        display = "New value in new unit";
+        setValue(display);
+    };
+
     return (
         <div className={model.readonly ? "row readonly": "row"}>
             <div className="col-12 mb-1 mb-lg-0">
                 <div className="input-group">
                     <form className="form-floating" onSubmit={handleSubmit}>
-                        <input type="text" className={valid} id={props.id} value={value} onChange={onInputChange} onKeyDown={handleKeyDown}/*onBlur={onInputBlur}*//>
+                        <input type="text" className={valid} id={props.id} placeholder="abc" value={value} onChange={onInputChange} onKeyDown={handleKeyDown}/*onBlur={onInputBlur}*//>
                         <label htmlFor={props.id}>{label}</label>
                     </form>
                     {
-                        accept2submit ? <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(value)}}>Set</button> : null
+                        // accept2submit ? <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(value)}}>Set</button> : null
                     }
                     <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue + step))}}><PlusLg/></button>
                     <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue - step))}}><DashLg/></button>
                     {
                         (unit === 'dBm' || unit === 'mW') ?
-                            <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue - step))}}><ArrowLeftRight/></button>
+                            <button className="btn btn-outline-secondary" type="button" onClick={() => {onConvert(unit)}}><ArrowLeftRight/></button>
                         : null
                     }
                 </div>
