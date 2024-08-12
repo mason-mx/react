@@ -24,7 +24,7 @@ const SettableControl = (props) => {
         putData(url, {set:value}, onPutSuccess, onPutFailure);
     };
     try {
-        if(isBoolean(model.set))
+        if(isBoolean(model.set) || model.set === 'ON' || model.set === 'OFF')
         {
             return <SwitchControl label={props.label} id={id} model={model} onSubmit={onSubmit}/>;
         }

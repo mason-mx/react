@@ -7,6 +7,10 @@ import { useTranslation } from "react-i18next";
 import {getData} from './fetch'
 
 function populateSetProperty(chassis, slot, channel, label, key, value, index) {
+    if('disabled' in value && value.disabled)
+    {
+        return;
+    }
     if('set' in value)
     {
         return (
@@ -19,6 +23,10 @@ function populateSetProperty(chassis, slot, channel, label, key, value, index) {
 }
 
 function populateActProperty(chassis, slot, channel, label, key, value, index) {
+    if('disabled' in value && value.disabled)
+    {
+        return;
+    }
     if('act' in value)
     {
         return (
@@ -31,6 +39,10 @@ function populateActProperty(chassis, slot, channel, label, key, value, index) {
 }
 
 function populateActSetProperty(chassis, slot, channel, label, key, value, index) {
+    if('disabled' in value && value.disabled)
+    {
+        return;
+    }
     if('act' in value || 'set' in value)
     {
         return (
