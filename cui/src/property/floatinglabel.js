@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { getStepsizebyValues } from "../util"
+import { getConvertedValue } from "../util"
 
 import { ArrowLeftRight, PlusLg, DashLg } from 'react-bootstrap-icons';
 
@@ -100,9 +101,12 @@ const FInputControl = (props) => {
         setOnEdit(false);
     };
 
-    const onConvert = (unit) => {
-        display = "New value in new unit";
-        setValue(display);
+    const onConvert = (value, unit) => {
+        var display = getConvertedValue(value, unit);
+        if(Object.keys(display).length != 0)
+        {
+            setValue(display.value + " " + display.unit);
+        }
     };
 
     return (
@@ -120,7 +124,7 @@ const FInputControl = (props) => {
                     <button className="btn btn-outline-secondary" type="button" onClick={() => {onSet(parseFloat(curValue - step))}}><DashLg/></button>
                     {
                         (unit === 'dBm' || unit === 'mW') ?
-                            <button className="btn btn-outline-secondary" type="button" onClick={() => {onConvert(unit)}}><ArrowLeftRight/></button>
+                            <button className="btn btn-outline-secondary" type="button" onClick={() => {onConvert(curValue, unit)}}><ArrowLeftRight/></button>
                         : null
                     }
                 </div>

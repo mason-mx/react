@@ -66,3 +66,20 @@ export const getStepsizebyValues = (min, max, set) => {
     }
     return number.toString();
  };
+
+ export const getConvertedValue = (value, unit) => {
+    var result = {}
+    switch(unit) {
+        case 'mW':
+            result['value'] = 10 * (Math.log10(value));
+            result['unit'] = 'dBm';
+            break;
+        case 'dBm':
+            result['value'] = Math.pow(10, (value/10));
+            result['unit'] = 'mW';
+            break;
+        default:
+            break;
+    }
+    return result;
+ };
