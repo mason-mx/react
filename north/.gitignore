@@ -1,0 +1,15 @@
+# Python
+*.exe
+*.pyd
+*.dll
+*.zip
+*.cat
+Lib/
+Scripts/
+
+# data
+*.xlsx
+
+# misc
+.DS_Store
+LICENSE.txt

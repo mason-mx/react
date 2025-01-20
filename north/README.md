@@ -1,6 +1,6 @@
-1. Download Python3.9.5(https://www.python.org/ftp/python/3.9.5/python-3.9.5-embed-amd64.zip) or similar.
+1. Download [Python3.9.5](https://www.python.org/ftp/python/3.9.5/python-3.9.5-embed-amd64.zip) or similar.
 2. In the file python39._pth or similar, uncomment the import command; or overwrite with this file.
-3. Download get-pip.py(https://bootstrap.pypa.io/get-pip.py).
+3. Download [get-pip.py](https://bootstrap.pypa.io/get-pip.py).
 4. Install Python packages:
 
 ```
