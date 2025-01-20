@@ -1,0 +1,13 @@
+{% extends 'base-banner.html' %}
+
+{% block header %}
+  {% block title %}POs{% endblock %}
+{% endblock %}
+
+{% block stock %}
+<div class="container">
+  <div class="row">
+	   {{ cols|safe }}
+  </div>
+</div>
+{% endblock %}

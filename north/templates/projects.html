@@ -1,0 +1,14 @@
+{% extends 'base-banner.html' %}
+
+{% block header %}
+  {% block title %}CS Assets{% endblock %}
+{% endblock %}
+
+{% block stock %}
+<div class="container">
+  <div class="row">
+	   {{ subtitle|safe }}
+  </div>
+  {{ rows|safe }}
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+/* body {
+  background-color: black;
+  color: white;
+} */
+
+.product {
+  padding: 1rem;
+  border: 1px solid #d1d1d1;
+  border-top-left-radius: 22px;
+  font-size: 30px;
+}
+
+.product-title {
+  border-bottom: 2px solid blue;
+  font-size: 40px;
+}

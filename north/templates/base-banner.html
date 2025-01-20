@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Flask Sandbox
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/pos.css') }}">
+{% endblock %}
+
+{% block content %}
+<header>
+  <div class="text-bg-dark border-bottom">
+    <div class="container m-0">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+          <img height="32px" src="./static/img/logo.png" alt="north-logo">
+        </a>
+
+        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+          <li>
+            <a href="#" class="nav-link text-secondary">
+              <span class="d-flex justify-content-center">
+                <i class="bi-house"></i>
+              </span>
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <span class="d-flex justify-content-center">
+                <i class="bi-speedometer2"></i>
+              </span>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <span class="d-flex justify-content-center">
+                <i class="bi-table"></i>
+              </span>
+              Orders
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <span class="d-flex justify-content-center">
+                <i class="bi-grid"></i>
+              </span>
+              Projects
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <span class="d-flex justify-content-center">
+                <i class="bi-person-circle"></i>
+              </span>
+              Suppliers
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="row">
+	   <img src="./static/img/logo.png" alt="north-logo">
+     <h1>PO KANBAN</h1>
+  </div>
+</div>
+<canvas id="myChart"></canvas>
+<hr>
+  {% block stock %}{% endblock %}
+{% endblock %}
+
+{% block script %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  <!-- <script src="{{ url_for('static', filename='cs.js/main.js') }}"></script>-->
+{% endblock %}
