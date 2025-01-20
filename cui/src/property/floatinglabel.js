@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { getStepsizebyValues } from "../util"
-import { getConvertedValue } from "../util"
+import { getStepsizebyValues, getConvertedValue } from "../util"
 
 import { ArrowLeftRight, PlusLg, DashLg } from 'react-bootstrap-icons';
 
@@ -103,7 +102,7 @@ const FInputControl = (props) => {
 
     const onConvert = (value, unit) => {
         var display = getConvertedValue(value, unit);
-        if(Object.keys(display).length != 0)
+        if(Object.keys(display).length !== 0)
         {
             setValue(display.value + " " + display.unit);
         }

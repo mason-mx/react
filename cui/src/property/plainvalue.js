@@ -1,5 +1,7 @@
 import React from "react"
 
+import { engineeringNotation } from "../util"
+
 const isBoolean = val => 'boolean' === typeof val;
 
 const PlainControl = (props) => {
@@ -8,7 +10,7 @@ const PlainControl = (props) => {
     try {
         return (
             <>
-                <span>{props.label}: </span><span className="text-info fst-italic" id={id + "_act"}><em>{model.act}</em></span><span> </span><span>{model.unit}</span>
+                <span>{props.label}: </span><span className="text-info fst-italic fs-5" id={id + "_act"}>{engineeringNotation(model.act, 3, model.unit)}</span>
             </>
         )
         if('act' in model && 'set' in model)
