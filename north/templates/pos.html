@@ -5,9 +5,78 @@
 {% endblock %}
 
 {% block stock %}
+<h1>PO KANBAN</h1>
+<hr>
 <div class="container">
+  <div class="row">
+    <div class="col-12"><h2>PO# 3001</h2></div>
+    <div class="col-12 col-lg-8">
+      <div class="row"><div class="col-12 fs-4">Supplier: XXX</div></div>
+      <div class="row"><div class="col-12 fs-4">Status: WIP</div></div>
+      <div class="row">
+        <div class="col-12 fs-4">Total Amount: $12,000</div>
+        <div class="col-12">
+          <div class="row mx-0">
+            <div class="col-4 bg-success border">2025-03-01</div>
+            <div class="col-6 bg-danger border">2025-03-21</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-4">
+      <div class="row">
+        <div class="col-6">
+          <div class="d-flex justify-content-center">
+            <span>OTD</span>
+          </div>
+          <canvas id="otd-po-1"></canvas>
+        </div>
+        <div class="col-6">
+          <div class="d-flex justify-content-center">
+            <span>QC Pass</span>
+          </div>
+          <canvas id="qc-po-1"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-12"><h2>PO# 3002</h2></div>
+    <div class="col-12 col-lg-8">
+      <div class="row"><div class="col-12 fs-4">Supplier: YYY</div></div>
+      <div class="row"><div class="col-12 fs-4">Status: SHIPMENT</div></div>
+      <div class="row">
+        <div class="col-12 fs-4">Total Amount: $18,000</div>
+        <div class="col-12">
+          <div class="row mx-0">
+            <div class="col-4 bg-success border">2025-03-01</div>
+            <div class="col-6 text-dark bg-warning border">2025-03-21</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-4">
+      <div class="row">
+        <div class="col-6">
+          <div class="d-flex justify-content-center">
+            <span>OTD</span>
+          </div>
+          <canvas id="otd-po-2"></canvas>
+        </div>
+        <div class="col-6">
+          <div class="d-flex justify-content-center">
+            <span>QC Pass</span>
+          </div>
+          <canvas id="qc-po-2"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="container">
   <div class="row">
 	   {{ cols|safe }}
   </div>
-</div>
+</div> -->
 {% endblock %}
