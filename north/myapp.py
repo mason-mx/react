@@ -239,13 +239,65 @@ class inventory(object):
 		for element in self.products:
 			html += element.__html__()
 		return html
+	def composePOsHTML(self):
+		html = ''
+		temp = """<div class="row">
+			<div class="col-12"><h2>PO# %s</h2></div>
+			<div class="col-12 col-lg-8">
+			<div class="row"><div class="col-12 fs-4">Supplier: XXX</div></div>
+			<div class="row"><div class="col-12 fs-4">Status: WIP</div></div>
+			<div class="row">
+				<div class="col-12 fs-4">Total Amount: $12,000</div>
+				<div class="col-12">
+				<div class="row mx-0">
+					<div class="col-4 bg-success border">2025-03-01</div>
+					<div class="col-6 bg-danger border">2025-03-21</div>
+				</div>
+				</div>
+			</div>
+			</div>
+			<div class="col-12 col-lg-4">
+			<div class="row">
+				<div class="col-6">
+				<div class="d-flex justify-content-center">
+					<span>OTD</span>
+				</div>
+				<canvas id="otd-po-%s"></canvas>
+				</div>
+				<div class="col-6">
+				<div class="d-flex justify-content-center">
+					<span>QC Pass</span>
+				</div>
+				<canvas id="qc-po-%s"></canvas>
+				</div>
+			</div>
+			</div>
+		</div>"""
+		pos = ['3001','3002']
+		for element in pos:
+			html += temp %(element, element, element)
+		return html
 
 @app.route('/')
 def index():
 	stock = inventory('data.xlsx')
 	stock.populateProducts()
 	cols = stock.composeProductsHTML()
-	return render_template('pos.html', cols=cols)
+	rows = stock.composePOsHTML()
+	#return render_template('pos.html', cols=cols)
+	return render_template('pos.html', rows=rows)
+
+@app.route('/pos')
+def pos():
+	return ['3001','3002']
+
+@app.route('/<path:subpath>/otd')
+def otd(subpath):
+	return [40, 60]
+
+@app.route('/<path:subpath>/qc')
+def qc(subpath):
+	return [20, 80]
 
 @app.route('/<path:subpath>')
 def show_subpath(subpath):
