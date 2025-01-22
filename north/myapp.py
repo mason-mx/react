@@ -293,11 +293,15 @@ def pos():
 
 @app.route('/<path:subpath>/otd')
 def otd(subpath):
-	return [40, 60]
+	data = {"3001": [40, 60],
+		"3002": [90, 60]}
+	return data[subpath]
 
 @app.route('/<path:subpath>/qc')
 def qc(subpath):
-	return [20, 80]
+	data = {"3001": [120, 60],
+		"3002": [90, 30]}
+	return data[subpath]
 
 @app.route('/<path:subpath>')
 def show_subpath(subpath):
