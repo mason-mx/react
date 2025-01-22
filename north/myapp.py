@@ -283,7 +283,37 @@ def index():
 	stock = inventory('data.xlsx')
 	stock.populateProducts()
 	cols = stock.composeProductsHTML()
-	rows = stock.composePOsHTML()
+	#rows = stock.composePOsHTML()
+	rows = [
+		{
+			'po': '3001',
+			'supplier': 'XXX',
+			'status': 'WIP',
+			'total': 52000,
+			'due1': {
+				'date': '2025-02-01',
+				'paid': 100
+			},
+			'due2': {
+				'date': '2025-03-01',
+				'paid': 0
+			}
+   		},
+		{
+			'po': '3002',
+			'supplier': 'YYY',
+			'status': 'SHIPMENT',
+			'total': 12000,
+			'due1': {
+				'date': '2025-02-01',
+				'paid': 100
+			},
+			'due2': {
+				'date': '2025-03-01',
+				'paid': 50
+			}
+		}
+	]
 	#return render_template('pos.html', cols=cols)
 	return render_template('pos.html', rows=rows)
 

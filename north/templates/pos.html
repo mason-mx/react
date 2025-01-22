@@ -8,7 +8,53 @@
 <h1>PO KANBAN</h1>
 <hr>
 <div class="container">
-  {{ rows | safe }}
+  <!-- {{ rows | safe }} -->
+  {% for row in rows %}
+    <div class="row">
+      <div class="col-12"><h2>PO# {{row.po}}</h2></div>
+      <div class="col-12 col-lg-8">
+      <div class="row"><div class="col-12 fs-4">Supplier: {{row.supplier}}</div></div>
+      <div class="row"><div class="col-12 fs-4">Status: {{row.status}}</div></div>
+      <div class="row">
+        <div class="col-12 fs-4">Total Amount: ${{row.total}}</div>
+        <div class="col-12">
+          <div class="row mx-0">
+            {% if row.due1.paid == 100 %}
+              <div class="col-4 bg-success border">{{row.due1.date}}</div>
+            {% elif row.due1.paid == 0 %}
+              <div class="col-4 bg-danger border">{{row.due1.date}}</div>
+            {% else %}
+              <div class="col-4 bg-warning text-black border">{{row.due1.date}}</div>
+            {% endif %}
+            {% if row.due2.paid == 100 %}
+              <div class="col-6 bg-success border">{{row.due2.date}}</div>
+            {% elif row.due2.paid == 0 %}
+              <div class="col-6 bg-danger border">{{row.due2.date}}</div>
+            {% else %}
+              <div class="col-6 bg-warning text-black border">{{row.due2.date}}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="col-12 col-lg-4">
+      <div class="row">
+        <div class="col-6">
+        <div class="d-flex justify-content-center">
+          <span>OTD</span>
+        </div>
+        <canvas id="otd-po-{{row.po}}"></canvas>
+        </div>
+        <div class="col-6">
+        <div class="d-flex justify-content-center">
+          <span>QC Pass</span>
+        </div>
+        <canvas id="qc-po-{{row.po}}"></canvas>
+        </div>
+      </div>
+      </div>
+    </div>
+  {% endfor %}
 </div>
 <!-- <div class="container">
   <div class="row">
