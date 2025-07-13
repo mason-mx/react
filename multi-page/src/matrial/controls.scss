@@ -1,0 +1,121 @@
+$cswitch-width: 4.0em;
+$cswitch-dot-width-margin: 0.2em;
+$property-row-border-color: #6c757d;
+
+.settable-property {
+    //background-color: lavender;
+    //border: 1px solid lavender;
+    .input-group input {
+        border-color: $property-row-border-color;
+    }
+}
+
+.switch-property {
+    border: 1px solid $property-row-border-color;
+    border-radius: var(--bs-border-radius);
+}
+
+.form-floating>.form-select {
+    border-color: $property-row-border-color;
+}
+
+.readonly {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.cswitch {
+    position: relative;
+    display: inline-block;
+    width: $cswitch-width;
+
+    input { 
+        opacity: 0;
+        width: 0;
+        height: 0;
+
+        &:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        &:checked + .slider:before {
+            left: unset;
+            right: $cswitch-dot-width-margin;
+        }
+
+        &:indeterminate + .slider {
+            background-color: GoldenRod;		/* GoldenRod */
+            border-color: GoldenRod;			/* GoldenRod */
+            &:before {
+                width: calc(100% - 2 * $cswitch-dot-width-margin);
+            }
+        }
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+
+        &:before {
+            position: absolute;
+            content: "";
+            height: calc(100% - 2 * $cswitch-dot-width-margin);
+            width: calc(50% - 2 * $cswitch-dot-width-margin);
+            left: $cswitch-dot-width-margin;
+            bottom: $cswitch-dot-width-margin;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+    }
+}
+
+.hover-button
+{
+    svg {
+        display:none;
+    }
+
+    &:hover svg {
+        display:inline-block;
+        animation: fade_in_show 0.5s
+    }
+}
+
+@keyframes fade_in_show {
+    0% {
+         opacity: 0;
+         transform: scale(0)
+    }
+
+    100% {
+         opacity: 1;
+         transform: scale(1)
+    }
+}
+
+.btn-selected {
+    border-radius: 25px !important;
+    border: solid 1px #381460 !important;
+    background-color: white !important;
+    color: black !important;
+}
+
+.btn-deselected {
+    border: solid 1px #666666 !important;
+    background-color: #e6e6e6 !important;
+    color: #666666 !important;
+}
+
+.property-control {
+    color: black;
+    height: 74px !important;
+    padding: 12px 4px 12px 4px !important;
+}
