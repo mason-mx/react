@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import BertChannel from './bertchannel';
 import BertGlobal from './bertglobal';
 import BertSidebar from './bertsidebar';
+import BertNavbar from './bertnavbar';
 import LaserChannel from './laserchannel';
 import VOAChannel from './voachannel';
 
@@ -21,11 +22,11 @@ const Channel = () => {
 				return (
 					<div className="container-fluid bd-gutter">
 						<BertSidebar/>
-						<main className="bert-main">
+						<main className="bert-main-has-sidebar">
 							<BertGlobal chassis={chassis} slot={slot}/>
 							<BertChannel chassis={chassis} slot={slot} channel={channel}/>
 						</main>
-						
+						{/* <BertNavbar/> */}
 					</div>
 				)
 			default:

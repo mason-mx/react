@@ -131,6 +131,31 @@ $property-row-border-color: #6c757d;
     }
 }
 
-.bert-main {
-    padding-left: 12em !important;
+.bert-navbar {
+    width: 10em !important;
+    visibility: visible;
+    transform: none !important;
+    .offcanvas-body {
+        > ul {
+            padding-left: 0;
+        }
+    }
+}
+
+.bert-main-has-sidebar {
+    padding-left: 0em !important;
+}
+
+.bert-main-has-navbar {
+    padding-right: 0em !important;
+}
+
+@media (min-width: 576px) {
+    .bert-main-has-sidebar {
+        padding-left: 12em !important;
+    }
+
+    .bert-main-has-navbar {
+        padding-right: 10em !important;
+    }
 }

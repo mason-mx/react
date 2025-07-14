@@ -9,13 +9,26 @@ const BertGlobal = (props) => {
     const id = "chassis_" + props.chassis + "_slot_" + props.slot + "_";
     
 	return (
-		<div className="container-fluid">
-			<div className='row'>
-				<div className='col-12 col-md-6 p-3 border border-3 border-info'>
-					Chassis: {props.chassis} | Slot: {props.slot}
+		<>
+			<h5>Chassis: {props.chassis} | Slot: {props.slot}</h5>
+			<h5 id="global">Module configuration<a className="anchor-link" aria-label="global" href="#global"></a></h5>
+			<div className="container-fluid">
+				<div className='row'>
+					<div className='col-12 col-lg-6 my-3'>
+						<FSelectControl label="Test 1" id={id + "freq"}/>
+					</div>
+					<div className='col-12 col-lg-6 my-3'>
+						<FSelectControl label="Test 1" id={id + "freq"}/>
+					</div>
+					<div className='col-12 col-lg-6 my-3'>
+						<FSelectControl label="Test 1" id={id + "freq"}/>
+					</div>
+					<div className='col-12 col-lg-6 my-3'>
+						<FSelectControl label="Test 1" id={id + "freq"}/>
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
