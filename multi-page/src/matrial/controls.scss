@@ -119,3 +119,18 @@ $property-row-border-color: #6c757d;
     height: 74px !important;
     padding: 12px 4px 12px 4px !important;
 }
+
+.bert-sidebar {
+    width: 12em !important;
+    visibility: visible;
+    transform: none !important;
+    .offcanvas-body {
+        > ul {
+            padding-left: 0;
+        }
+    }
+}
+
+.bert-main {
+    padding-left: 12em !important;
+}
