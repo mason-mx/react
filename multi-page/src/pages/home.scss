@@ -1,3 +1,11 @@
 .anchor-link {
     scroll-margin-top: 4rem;
 }
+
+.fixed-top {
+  z-index: 1099 !important;
+}
+
+.bert-page-has-navbar {
+  padding-top: 3.5rem;
+}
