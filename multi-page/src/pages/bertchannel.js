@@ -11,7 +11,7 @@ const BertChannel = (props) => {
 	return (
 		<>
 			<h5>Working on channel: {props.channel}</h5>
-			<h5 id="ppg_output">Output<a className="anchor-link" aria-label="ppg_output" href="#ppg_output"></a></h5>
+			<h5 className="anchor-link" id="ppg_output">Output</h5>
 			<div className="container-fluid">
 				<div className='row g-2'>
 					<div className='col-12 col-lg-6 p-3'>
@@ -42,7 +42,7 @@ const BertChannel = (props) => {
 					</div>
 				</div>
 			</div>
-			<h5 id="ppg_de_emphasis">De Emphasis<a className="anchor-link" aria-label="ppg_de_emphasis" href="#ppg_de_emphasis"></a></h5>
+			<h5 className="anchor-link" id="ppg_de_emphasis">De Emphasis</h5>
 			<div className="container-fluid">
 				<div className='row'>
 					<div className='col-12 col-lg-6 p-3'>
@@ -69,7 +69,7 @@ const BertChannel = (props) => {
 					</div>
 				</div>
 			</div>
-			<h5 id="ppg_pattern">Pattern<a className="anchor-link" aria-label="ppg_pattern" href="#ppg_pattern"></a></h5>
+			<h5 className="anchor-link" id="ppg_pattern">Pattern</h5>
 			<div className="container-fluid">
 				<div className='row'>
 					<div className='col-12 col-lg-6 p-3'>
@@ -96,7 +96,7 @@ const BertChannel = (props) => {
 					</div>
 				</div>
 			</div>
-			<h5 id="ed_equalizer">Equalizer<a className="anchor-link" aria-label="ed_equalizer" href="#ed_equalizer"></a></h5>
+			<h5 className="anchor-link" id="ed_equalizer">Equalizer</h5>
 			<div className="container-fluid">
 				<div className='row'>
 					<div className='col-12 col-lg-6 p-3'>
@@ -112,7 +112,7 @@ const BertChannel = (props) => {
 					</div>
 				</div>
 			</div>
-			<h5 id="ed_error_detector">Error Detector<a className="anchor-link" aria-label="ed_error_detector" href="#ed_error_detector"></a></h5>
+			<h5 className="anchor-link" id="ed_error_detector">Error Detector</h5>
 			<div className="container-fluid">
 				<div className='row'>
 					<div className='col-12 col-lg-6 p-3'>
@@ -128,7 +128,7 @@ const BertChannel = (props) => {
 					</div>
 				</div>
 			</div>
-			<h5 id="ed_eye_scan">Eye scan<a className="anchor-link" aria-label="ed_eye_scan" href="#ed_eye_scan"></a></h5>
+			<h5 className="anchor-link" id="ed_eye_scan">Eye scan</h5>
 			<div className="container-fluid">
 				<div className='row'>
 					<div className='col-12 col-lg-6 p-3'>

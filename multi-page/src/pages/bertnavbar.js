@@ -5,7 +5,7 @@ const BertNavbar = (props) => {
     const id = "chassis_" + props.chassis + "_slot_" + props.slot + "_channel_" + props.channel + "_";
     
 	return (
-		<div className="offcanvas offcanvas-end d-none d-sm-block bert-navbar" id="offcanvas" aria-labelledby="offcanvasLabel">
+		<div className="offcanvas offcanvas-end d-none d-md-block bert-navbar" id="offcanvas" aria-labelledby="offcanvasLabel">
             <div className="offcanvas-header">
                 <h5 className="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
             </div>

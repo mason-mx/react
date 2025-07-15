@@ -11,7 +11,7 @@ const BertGlobal = (props) => {
 	return (
 		<>
 			<h5>Chassis: {props.chassis} | Slot: {props.slot}</h5>
-			<h5 id="global">Module configuration<a className="anchor-link" aria-label="global" href="#global"></a></h5>
+			<h5 className="anchor-link" id="global">Module configuration</h5>
 			<div className="container-fluid">
 				<div className='row'>
 					<div className='col-12 col-lg-6 my-3'>

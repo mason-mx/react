@@ -154,7 +154,9 @@ $property-row-border-color: #6c757d;
     .bert-main-has-sidebar {
         padding-left: 12em !important;
     }
+}
 
+@media (min-width: 768px) {
     .bert-main-has-navbar {
         padding-right: 10em !important;
     }
