@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route }
 import Home from './pages';
 import About from './pages/about';
 import Channel from './pages/channel';
+import Module from './pages/module';
  
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 <Route exact path='/' element={<Home />} />
                 <Route path='/about' element={<About />} />
                 <Route path='/c/:chassis/s/:slot/c/:channel' element={<Channel />} />
+                <Route path='/c/:chassis/s/:slot' element={<Module />} />
             </Routes>
         </Router>
     );
