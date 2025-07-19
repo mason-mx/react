@@ -8,8 +8,10 @@ import BertSidebar from './bertsidebar';
 import LaserChannel from './laserchannel';
 import VOAChannel from './voachannel';
 
-const Channel = () => {
-	const { chassis, slot, channel } = useParams();
+const Channel = (props) => {
+	var { chassis, slot, channel } = useParams();
+	console.log(chassis, slot, channel);
+	if(channel === undefined) { channel = props.channel; }
 
 	try {
 		switch (slot) {
