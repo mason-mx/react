@@ -10,7 +10,6 @@ import VOAChannel from './voachannel';
 
 const Channel = (props) => {
 	var { chassis, slot, channel } = useParams();
-	console.log(chassis, slot, channel);
 	if(channel === undefined) { channel = props.channel; }
 
 	try {

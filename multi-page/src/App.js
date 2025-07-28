@@ -12,8 +12,8 @@ function App() {
         <Router>
             <Routes>
                 <Route exact path='/' element={<Home />} />
-                <Route path='/c/:chassis/s/:slot/c/:channel' element={<Channel />} />
                 <Route path='/c/:chassis/s/:slot' element={<Module />} />
+                <Route path='/c/:chassis/s/:slot/c/:channel' element={<Channel />} />
             </Routes>
         </Router>
     );
