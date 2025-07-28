@@ -5,17 +5,20 @@ import { useParams } from 'react-router';
 import PAM4Page from './pam4page';
 import LaserPage from './laserpage';
 
-const Module = () => {
-	const { chassis, slot } = useParams();
+const Module = (props) => {
+	var { chassis, slot } = useParams();
+	if(chassis === undefined) { chassis = props.chassis; }
+	if(slot === undefined) { slot = props.slot; }
 
 	try {
 		switch (slot) {
 			case "9":
 				return (
-					<PAM4Page />
+					<PAM4Page chassis={chassis} slot={slot}/>
 				)
 			case "3":
-				return ( <LaserPage />)
+			case "6":
+				return ( <LaserPage chassis={chassis} slot={slot}/>)
 			default:
 				return (
 					<>

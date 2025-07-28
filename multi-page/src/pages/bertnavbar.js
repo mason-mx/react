@@ -21,8 +21,8 @@ const BertNavbar = (props) => {
                     <li className="list-group-item">Channel 7</li>
                     <li className="list-group-item">Channel 8</li>
                 </ul>
-                <input type="checkbox" className="btn-check" id="btn-check-outlined" autocomplete="off" />
-                <label className="btn btn-outline-primary btn-sm" for="btn-check-outlined">Apply to all</label>
+                <input type="checkbox" className="btn-check" id="btn-check-outlined" autoComplete="off" />
+                <label className="btn btn-outline-primary btn-sm" htmlFor="btn-check-outlined">Apply to all</label>
             </div>
         </div>
 	);
