@@ -3,7 +3,7 @@ import '../matrial/controls.scss';
 import { useParams } from 'react-router';
 
 import PAM4Page from './pam4page';
-import LaserPage from './laserpage';
+import Channel from "./channel";
 
 const Module = (props) => {
 	var { chassis, slot } = useParams();
@@ -18,7 +18,14 @@ const Module = (props) => {
 				)
 			case "3":
 			case "6":
-				return ( <LaserPage chassis={chassis} slot={slot}/>)
+				return (
+						<div className="container-fluid bd-gutter">
+							<div className="row">
+								<Channel chassis={chassis} slot={slot} channel={1} />
+								<Channel chassis={chassis} slot={slot} channel={2} />
+							</div>
+						</div>
+					)
 			default:
 				return (
 					<>
