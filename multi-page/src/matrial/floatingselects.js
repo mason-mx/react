@@ -35,6 +35,7 @@ const FSelectControl = (props) => {
 
     return (
         <>
+            <div>{props.setval}</div>
             <div className="form-floating">
                 <select className="form-select" id={props.id} onChange={onChange} value={cur}>
                     {options}
